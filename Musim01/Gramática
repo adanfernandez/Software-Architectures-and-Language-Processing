@@ -1,0 +1,43 @@
+programa : M LLA bloque LLC
+
+bloque : (sentencia PYC) *
+
+sentencia : asignacion
+	| lectura
+	| escritura
+	
+asignacion : variable EQ expresion
+
+expresion : termino ((MAS | MENOS) termino) *
+
+termino : factor ((MULT | DIV) factor) *
+
+factor : variable
+	| constante
+	| PARABRE expresion PARCIERRA
+	
+escritura : W expresion
+
+lectura : R variable
+
+///// Podría ser léxico o sintáctico
+///// Tienen token concreto y, además regla
+
+variable : 'a' | 'b' | 'c' | ... | 'z'
+constante : '0' | '1' | '2' | ... | '9'
+
+///// Léxico
+
+M : 'M'
+R : 'R'
+W : 'W'
+LLA : '{'
+LLC : '{'
+PYC : ';'
+EQ : '='
+MAS : '+'
+MENOS : '-'
+MULT : '*'
+DIV : '/'
+PARABRE : '('
+PARCIERRA : ')'
