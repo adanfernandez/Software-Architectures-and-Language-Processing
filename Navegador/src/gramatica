@@ -1,0 +1,50 @@
+programa: HTMLI head body HTMLC
+head: HEADI title link HEADC
+title: TITLEI TEXTO* TITLEC
+link: LINKI HREF REL TYPE CIERRE
+HREF: HREFI CADENA
+REL: RELI CADENA
+TYPE: TYPEI CADENA
+
+body: BODYI etiqueta* BODYC
+
+etiqueta: h1 | h2 | p
+
+h1: H1I elemento H1C
+h2: H2I elemento H2C
+p: PI elemento PC
+
+elemento: TEXTO | negrita | cursiva | underline
+
+negrita: NEGRITAI TEXTO NEGRITAC
+cursiva: CURSIVAI TEXTO CURSIVAC
+underline: UNDERLINEI TEXTO UNDERLINEC
+
+
+HTMLI: '<html>'
+HTMLC: '</html>'
+HEADI: '<head>'
+HEADC: '</head>'
+TITLEI: '<title>'
+TITLEC: '</title>'
+LINKI: '<link'
+HREFI: 'href='
+RELI: 'rel='
+TYPEI: 'type='
+BODYI: '<body>'
+BODYC: '</body>'
+H1I: '<h1>'
+H1C: '</h1>'
+H2I: '<h2>'
+H2C: '</h2>'
+PI: '<p>'
+PC: '</p>'
+CIERRE: '>'
+NEGRITAI: '<b>'
+NEGRITAC: '</b>'
+CURSIVAI: '<i>'
+CURSIVAC: '</i>'
+UNDERLINEI: '<u>'
+UNDERLINEC: '</u>'
+CADENA: "[a-zA-Z0-1.,;]*"
+TEXTO: [a-zA-Z0-1.,;!"·$%&/()=?¿]*
