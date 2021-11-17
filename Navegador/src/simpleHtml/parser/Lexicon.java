@@ -152,6 +152,8 @@ public class Lexicon {
 						}
 					}
 					break;
+				case '\n':
+					line ++;
 				default:
 					// Texto
 					lex = getLexemeTEXT(new String("" + (char) valor));
