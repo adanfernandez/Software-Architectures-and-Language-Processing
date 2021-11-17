@@ -1,6 +1,23 @@
 package simpleHtml.parser;
 
 public enum TokensId {
-	// Tokens admitidos
-	EOF;
+	EOF,
+	HTMLI, HTMLC,
+	HEADI, HEADC,
+	TITLEI, TITLEC,
+	LINKI,
+	HREFI,
+	RELI,
+	TYPEI,
+	BODYI, BODYC,
+	H1I, H1C,
+	H2I, H2C,
+	PI, PC,
+	CIERRE,
+	NEGRITAI, NEGRITAC,
+	CURSIVAI, CURSIVAC,
+	UNDERLINEI, UNDERLINEC,
+	CADENA,
+	TEXTO
+	;
 }

@@ -1,23 +1,14 @@
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import ast.Ast;
+import simpleHtml.parser.Lexicon;
+
 
 public class Main {
 	static boolean logGen = true;
 	
-	public static void main(String[] args) {
-		Ast htmlAst = null;
-		AstCss cssAst = null;
-		AstCss defaultCss = null;
-		
-		try {
-			FileReader fileHtml = new FileReader("EX$.html");
-			HtmlAstCreator htmlAstCreator = new HtmlAstCreator();
-			htmlAst = htmlAstCreator.getHtmlAst(fileHtml);
-			log("Creado el árbol del html");
-			
-			BuscarCss bcss = new BuscarCss();
-			String css = (String)htmlAst.accept(null, bcss)
-		}
+	public static void main(String[] args) throws FileNotFoundException {
+		FileReader fileReader = new FileReader("C:\\Users\\uo251162\\Documents\\Software-Architectures-and-Language-Processing\\Navegador\\src\\EX4.html");
+		Lexicon lexicon = new Lexicon(fileReader);
 	}
 }

@@ -1,4 +1,4 @@
-package simpleHtml.parser;
+/*package simpleHtml.parser;
 
 import java.util.List;
 
@@ -25,3 +25,4 @@ public class Parser {
 		System.out.println("Error Sintáctico : "+e+" en la línea "+line);
 	}
 }
+*/

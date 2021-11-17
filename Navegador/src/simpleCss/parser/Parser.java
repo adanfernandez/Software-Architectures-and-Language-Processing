@@ -1,4 +1,4 @@
-package simpleCss.parser;
+/*package simpleCss.parser;
 
 import java.util.List;
 
@@ -16,3 +16,4 @@ public class Parser {
 	public Program parse () {
 	}
 }
+*/

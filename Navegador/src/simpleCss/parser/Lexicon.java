@@ -1,4 +1,4 @@
-package simpleCss.parser;
+/*package simpleCss.parser;
 
 import java.io.FileReader;
 import java.util.*;
@@ -115,7 +115,7 @@ public class Lexicon {
 		return lexReturned;
 	}
 	
-	// Borra un comentario que está encerrado en /* y */
+
 	boolean deleteComment () throws IOException {
 		boolean r = false;
 		char c = nextChar();
@@ -160,3 +160,4 @@ public class Lexicon {
 		System.out.println("Error léxico en : "+e);
 	}
 }
+*/
