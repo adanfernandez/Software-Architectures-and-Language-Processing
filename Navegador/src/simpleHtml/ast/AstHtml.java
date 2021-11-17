@@ -1,8 +1,7 @@
-/*package simpleHtml.ast;
+package simpleHtml.ast;
 
 import simpleHtml.visitor.*;
 
-public interface Ast {
+public interface AstHtml {
 	Object accept(Visitor v, Object param);
 }
-*/

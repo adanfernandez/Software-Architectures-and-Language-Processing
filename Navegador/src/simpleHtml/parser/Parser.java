@@ -1,4 +1,4 @@
-/*package simpleHtml.parser;
+package simpleHtml.parser;
 
 import java.util.List;
 
@@ -8,14 +8,14 @@ import java.util.*;
 public class Parser {
 	
 	Lexicon lex;
+	boolean errorSint = false;
 	
 	public Parser (Lexicon lex) {
 		this.lex = lex;
 	}
 	
-	public Ast parse () {
-		//...
-		return ast;
+	public AstHtml parse () {
+		return null;
 	}
 	
 
@@ -25,4 +25,3 @@ public class Parser {
 		System.out.println("Error Sintáctico : "+e+" en la línea "+line);
 	}
 }
-*/
