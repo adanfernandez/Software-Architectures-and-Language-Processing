@@ -17,4 +17,12 @@ public class Negrita implements Elemento {
 		return v.visit(this, param);
 	}
 
+	public List<Texto> getElementos() {
+		return elementos;
+	}
+
+	public void setElementos(List<Texto> elementos) {
+		this.elementos = elementos;
+	}
+
 }

@@ -3,6 +3,14 @@ package simpleHtml.ast;
 import simpleHtml.visitor.Visitor;
 
 public class Texto implements Elemento {
+	public String getCadena() {
+		return cadena;
+	}
+
+	public void setCadena(String cadena) {
+		this.cadena = cadena;
+	}
+
 	public String cadena;
 	
 	public Texto (String cadena) {

@@ -6,6 +6,14 @@ import simpleHtml.visitor.Visitor;
 
 public class Subrayado implements Elemento {
 
+	public List<Texto> getElementos() {
+		return elementos;
+	}
+
+	public void setElementos(List<Texto> elementos) {
+		this.elementos = elementos;
+	}
+
 	List<Texto> elementos;
 
 	public Subrayado(List<Texto> elementos) {

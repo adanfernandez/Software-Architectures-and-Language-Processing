@@ -4,6 +4,7 @@ import java.io.FileReader;
 import simpleHtml.ast.Programa;
 import simpleHtml.parser.Lexicon;
 import simpleHtml.parser.Parser;
+import simpleHtml.visitor.PrintVisitor;
 
 
 public class Main {
@@ -15,5 +16,7 @@ public class Main {
 		Parser parser = new Parser(lexicon);
 		Programa programa = parser.parse();
 		programa.toString();
+		String cadena = (String)programa.accept(new PrintVisitor(), null);
+		System.out.println(cadena);
 	}
 }

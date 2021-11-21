@@ -6,6 +6,14 @@ import simpleHtml.visitor.Visitor;
 
 public class Cursiva implements Elemento {
 
+	public List<Texto> getElementos() {
+		return elementos;
+	}
+
+	public void setElementos(List<Texto> elementos) {
+		this.elementos = elementos;
+	}
+
 	List<Texto> elementos;
 	
 	public Cursiva (List<Texto> elementos) {

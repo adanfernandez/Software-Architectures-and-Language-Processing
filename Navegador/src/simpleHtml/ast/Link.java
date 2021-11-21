@@ -17,6 +17,36 @@ public class Link implements AstHtml {
 	}
 
 
+	public Href getHref() {
+		return href;
+	}
+
+
+	public void setHref(Href href) {
+		this.href = href;
+	}
+
+
+	public Rel getRel() {
+		return rel;
+	}
+
+
+	public void setRel(Rel rel) {
+		this.rel = rel;
+	}
+
+
+	public Type getType() {
+		return type;
+	}
+
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
+
 	@Override
 	public Object accept(Visitor v, Object param) {
 		return v.visit(this, param);

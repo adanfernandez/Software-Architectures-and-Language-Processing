@@ -4,6 +4,22 @@ import simpleHtml.visitor.Visitor;
 
 public class Head implements AstHtml {
 	
+	public Title getTitle() {
+		return title;
+	}
+
+	public void setTitle(Title title) {
+		this.title = title;
+	}
+
+	public Link getLink() {
+		return link;
+	}
+
+	public void setLink(Link link) {
+		this.link = link;
+	}
+
 	Title title;
 	Link link;
 	

@@ -6,6 +6,16 @@ import simpleHtml.visitor.Visitor;
 
 public class H1 implements Etiqueta{
 
+	public List<Elemento> getElementos() {
+		return elementos;
+	}
+
+
+	public void setElementos(List<Elemento> elementos) {
+		this.elementos = elementos;
+	}
+
+
 	List<Elemento> elementos;
 
 	public H1(List<Elemento> elementos) {
