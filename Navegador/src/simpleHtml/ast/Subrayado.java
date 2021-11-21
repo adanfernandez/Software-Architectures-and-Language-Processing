@@ -1,13 +1,15 @@
 package simpleHtml.ast;
 
+import java.util.List;
+
 import simpleHtml.visitor.Visitor;
 
-public class Subrayado implements Elemento{
+public class Subrayado implements Elemento {
 
-	Elemento elemento;
-	
-	public Subrayado (Elemento elemento) {
-		this.elemento = elemento;
+	List<Texto> elementos;
+
+	public Subrayado(List<Texto> elementos) {
+		this.elementos = elementos;
 	}
 
 	@Override

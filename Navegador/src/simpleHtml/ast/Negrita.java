@@ -1,13 +1,15 @@
 package simpleHtml.ast;
 
+import java.util.List;
+
 import simpleHtml.visitor.Visitor;
 
 public class Negrita implements Elemento {
 
-	Elemento elemento;
-	
-	public Negrita (Elemento elemento) {
-		this.elemento = elemento;
+	List<Texto> elementos;
+
+	public Negrita(List<Texto> elementos) {
+		this.elementos = elementos;
 	}
 	
 	@Override

@@ -282,4 +282,11 @@ public class Lexicon {
 	void errorLexico(String e) {
 		System.out.println("Error léxico en : " + e);
 	}
+
+	public Token getActualToken() {
+		if (i < tokens.size() && i > 0) {
+			return tokens.get(i-1);
+		}
+		return new Token (TokensId.EOF,"EOF", line);
+	}
 }

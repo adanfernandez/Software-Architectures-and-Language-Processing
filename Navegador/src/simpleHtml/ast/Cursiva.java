@@ -1,13 +1,15 @@
 package simpleHtml.ast;
 
+import java.util.List;
+
 import simpleHtml.visitor.Visitor;
 
 public class Cursiva implements Elemento {
 
-	Elemento elemento;
+	List<Texto> elementos;
 	
-	public Cursiva (Elemento elemento) {
-		this.elemento = elemento;
+	public Cursiva (List<Texto> elementos) {
+		this.elementos = elementos;
 	}
 	
 	@Override

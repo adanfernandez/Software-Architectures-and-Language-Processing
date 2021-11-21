@@ -1,14 +1,16 @@
 package simpleHtml.ast;
 
+import java.util.List;
+
 import simpleHtml.visitor.Visitor;
 
 public class P implements Etiqueta {
 
-	Elemento elemento;
+	List<Elemento> elementos;
 
-	public P(Elemento elemento) {
+	public P(List<Elemento> elementos) {
 		super();
-		this.elemento = elemento;
+		this.elementos = elementos;
 	}
 
 	@Override
