@@ -21,7 +21,6 @@ public class Main {
 		
 		FileReader fileReaderCss = new FileReader("src\\EX1.css");
 		LexiconCss lexiconCss = new LexiconCss(fileReaderCss);
-		
-	//	ParserCss parserCss = new ParserCss(lexiconCss);
+		ParserCss parserCss = new ParserCss(lexiconCss);
 	}
 }
