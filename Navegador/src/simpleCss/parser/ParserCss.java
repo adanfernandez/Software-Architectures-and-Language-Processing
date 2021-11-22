@@ -107,10 +107,11 @@ public class ParserCss {
 					errorSintactico("Se esperaba ; y se ha obtenido " + token.getLexeme(), token.getLine());
 				}
 				
-				campo.setAsignacion(asignaciones);
-				programa.getAtributos().add(campo);
+				
 				token = lex.getToken();
 			}
+			campo.setAsignacion(asignaciones);
+			programa.getAtributos().add(campo);
 			if(!token.getToken().equals(TokensIdCss.LLAVE_FIN)) {
 				errorSintactico("Se esperaba } y se ha obtenido " + token.getLexeme(), token.getLine());
 			}
