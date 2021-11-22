@@ -1,5 +1,8 @@
 package simpleCss.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import simpleCss.ast.*;
 
 public class ParserCss {
@@ -14,9 +17,6 @@ public class ParserCss {
 	public Programa parse () {
 		Programa programa = new Programa();
 		TokenCss token = lex.getToken();
-		/*if(!token.getToken().equals(TokensIdCss.H1) || !token.getToken().equals(TokensIdCss.H2) || !token.getToken().equals(TokensIdCss.P) ) {
-			errorSintactico("Se esperaba h1, h2 o p y se ha obtenido " + token.getLexeme(), token.getLine());
-		}*/
 		
 		while(token.getToken().equals(TokensIdCss.H1) || token.getToken().equals(TokensIdCss.H2) || token.getToken().equals(TokensIdCss.P)) {
 			
@@ -38,10 +38,10 @@ public class ParserCss {
 			
 			
 			token = lex.getToken();
-			Asignacion asignacion = null;
 			
-			
+			List<Asignacion> asignaciones = new ArrayList<Asignacion>();
 			while(token.getToken().equals(TokensIdCss.COLOR) || token.getToken().equals(TokensIdCss.TEXT_ALIGN) || token.getToken().equals(TokensIdCss.FONT_STYLE) || token.getToken().equals(TokensIdCss.FONT_SIZE)) {
+				Asignacion asignacion = null;
 				if(token.getToken().equals(TokensIdCss.COLOR)) {
 					token = lex.getToken();
 					if(!token.getToken().equals(TokensIdCss.DOS_PUNTOS)) {
@@ -59,6 +59,7 @@ public class ParserCss {
 						errorSintactico("Se esperaba un color y se ha obtenido " + token.getLexeme(), token.getLine());
 					}
 					asignacion = new Color(colorValue);
+					asignaciones.add(asignacion);
 				} if(token.getToken().equals(TokensIdCss.FONT_SIZE)) {
 					token = lex.getToken();
 					if(!token.getToken().equals(TokensIdCss.DOS_PUNTOS)) {
@@ -66,7 +67,7 @@ public class ParserCss {
 					}
 					token = lex.getToken();
 					Size size = new Size(token.getLexeme());
-					asignacion = new FontSize(size);					
+					asignaciones.add(new FontSize(size));
 				} if(token.getToken().equals(TokensIdCss.TEXT_ALIGN)) {
 					token = lex.getToken();
 					if(!token.getToken().equals(TokensIdCss.DOS_PUNTOS)) {
@@ -83,8 +84,8 @@ public class ParserCss {
 					} else {
 						errorSintactico("Se esperaba un center, right o left y se ha obtenido " + token.getLexeme(), token.getLine());
 					}
-					asignacion = new TextAlign(textAlignValor);
-				}  if(token.getToken().equals(TokensIdCss.FONT_STYLE)) {
+					asignaciones.add(new TextAlign(textAlignValor));
+				} if(token.getToken().equals(TokensIdCss.FONT_STYLE)) {
 					token = lex.getToken();
 					if(!token.getToken().equals(TokensIdCss.DOS_PUNTOS)) {
 						errorSintactico("Se esperaba : y se ha obtenido " + token.getLexeme(), token.getLine());
@@ -98,7 +99,7 @@ public class ParserCss {
 					} else {
 						errorSintactico("Se esperaba un italic o normal y se ha obtenido " + token.getLexeme(), token.getLine());
 					}
-					asignacion = new FontStyle(fontStyleValor);
+					asignaciones.add(new FontStyle(fontStyleValor));
 				} 
 				
 				token = lex.getToken();
@@ -106,13 +107,14 @@ public class ParserCss {
 					errorSintactico("Se esperaba ; y se ha obtenido " + token.getLexeme(), token.getLine());
 				}
 				
-				campo.setAsignacion(asignacion);
+				campo.setAsignacion(asignaciones);
 				programa.getAtributos().add(campo);
 				token = lex.getToken();
 			}
 			if(!token.getToken().equals(TokensIdCss.LLAVE_FIN)) {
 				errorSintactico("Se esperaba } y se ha obtenido " + token.getLexeme(), token.getLine());
 			}
+			token = lex.getToken();
 		}
 		return programa;
 	}

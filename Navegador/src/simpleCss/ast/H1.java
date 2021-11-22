@@ -1,17 +1,19 @@
 package simpleCss.ast;
 
+import java.util.List;
+
 public class H1 implements Campo {
-	Asignacion asignacion;
+	List<Asignacion> asignaciones;
 	
-	public H1(Asignacion asignacion) {
-		this.asignacion = asignacion;
+	public H1(List<Asignacion> asignacion) {
+		this.asignaciones = asignacion;
 	}
 	
-	public Asignacion getAsignacion() {
-		return asignacion;
+	public List<Asignacion> getAsignacion() {
+		return asignaciones;
 	}
 	
-	public void setAsignacion(Asignacion asignacion) {
-		this.asignacion = asignacion;
+	public void setAsignacion(List<Asignacion>  asignaciones) {
+		this.asignaciones = asignaciones;
 	}
 }
