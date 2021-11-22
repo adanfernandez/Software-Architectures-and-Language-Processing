@@ -22,5 +22,7 @@ public class Main {
 		FileReader fileReaderCss = new FileReader("src\\EX1.css");
 		LexiconCss lexiconCss = new LexiconCss(fileReaderCss);
 		ParserCss parserCss = new ParserCss(lexiconCss);
+		simpleCss.ast.Programa prCss = parserCss.parse();
+		prCss.toString();
 	}
 }

@@ -1,18 +1,18 @@
 package simpleCss.ast;
 
 public class FontStyle implements Asignacion {
-	Valor valor;
+	FontStyleValor valor;
 
-	public FontStyle(Valor valor) {
+	public FontStyle(FontStyleValor valor) {
 		super();
 		this.valor = valor;
 	}
 
-	public Valor getValor() {
+	public FontStyleValor getValor() {
 		return valor;
 	}
 
-	public void setValor(Valor valor) {
+	public void setValor(FontStyleValor valor) {
 		this.valor = valor;
 	}
 }
