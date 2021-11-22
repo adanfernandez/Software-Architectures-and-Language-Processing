@@ -1,18 +1,18 @@
 package simpleHtml.parser;
 
 
-public class Token {
-	TokensId token;
+public class TokenHtml {
+	TokensIdHtml token;
 	String lexeme;
 	int line;
 	
-	public Token (TokensId token, String lexeme, int line) {
+	public TokenHtml (TokensIdHtml token, String lexeme, int line) {
 		this.token = token;
 		this.lexeme = lexeme;
 		this.line = line;
 	}
 	
-	public TokensId getToken () {
+	public TokensIdHtml getToken () {
 		return token;
 	}
 	

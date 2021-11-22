@@ -1,0 +1,25 @@
+package simpleCss.parser;
+
+public enum TokensIdCss {
+	H1,
+	H2,
+	P,
+	FONT_SIZE,
+	TEXT_ALIGN,
+	FONT_STYLE,
+	COLOR,
+	BLACK,
+	GREEN,
+	BLUE,
+	SIZE,
+	ITALIC,
+	NORMAL,
+	CENTER,
+	LEFT,
+	RIGHT,
+	LLAVE_INICIO,
+	LLAVE_FIN,
+	DOS_PUNTOS,
+	PUNTO_COMA,
+	EOF
+}

@@ -1,6 +1,6 @@
 package simpleHtml.parser;
 
-public enum TokensId {
+public enum TokensIdHtml {
 	EOF,
 	HTMLI, HTMLC,
 	HEADI, HEADC,

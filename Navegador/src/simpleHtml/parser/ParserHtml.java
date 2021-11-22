@@ -5,12 +5,12 @@ import java.util.List;
 import simpleHtml.ast.*;
 import java.util.*;
 
-public class Parser {
+public class ParserHtml {
 
-	Lexicon lex;
+	LexiconHtml lex;
 	boolean errorSint = false;
 
-	public Parser(Lexicon lex) {
+	public ParserHtml(LexiconHtml lex) {
 		this.lex = lex;
 	}
 
@@ -21,39 +21,39 @@ public class Parser {
 	}
 
 	public Programa parse() {
-		Token token = lex.getToken();
-		if (!token.getToken().equals(TokensId.HTMLI)) {
+		TokenHtml token = lex.getToken();
+		if (!token.getToken().equals(TokensIdHtml.HTMLI)) {
 			errorSintactico("Se esperaba <html> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		Programa programa = new Programa(parseHead(), parseBody());
 		token = lex.getToken();
-		if (!token.getToken().equals(TokensId.HTMLC)) {
+		if (!token.getToken().equals(TokensIdHtml.HTMLC)) {
 			errorSintactico("Se esperaba </html> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		return programa;
 	}
 
 	public Head parseHead() {
-		Token token = lex.getToken();
-		if (!token.getToken().equals(TokensId.HEADI)) {
+		TokenHtml token = lex.getToken();
+		if (!token.getToken().equals(TokensIdHtml.HEADI)) {
 			errorSintactico("Se esperaba <head> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		Head head = new Head(parseTitle(), parseLink());
 		token = lex.getToken();
-		if (!token.getToken().equals(TokensId.HEADC)) {
+		if (!token.getToken().equals(TokensIdHtml.HEADC)) {
 			errorSintactico("Se esperaba </head> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		return head;
 	}
 
 	public Body parseBody() {
-		Token token = lex.getToken();
-		if (!token.getToken().equals(TokensId.BODYI)) {
+		TokenHtml token = lex.getToken();
+		if (!token.getToken().equals(TokensIdHtml.BODYI)) {
 			errorSintactico("Se esperaba <body> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
 		List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
-		while ((token.token == TokensId.H1I) || (token.token == TokensId.H2I) || (token.token == TokensId.PI)) {
+		while ((token.token == TokensIdHtml.H1I) || (token.token == TokensIdHtml.H2I) || (token.token == TokensIdHtml.PI)) {
 			Etiqueta etiqueta = obtenerEtiqueta(token);
 			if (etiqueta != null)
 				etiquetas.add(etiqueta);
@@ -62,29 +62,29 @@ public class Parser {
 
 		Body body = new Body(etiquetas);
 		
-		if (!token.getToken().equals(TokensId.BODYC)) {
+		if (!token.getToken().equals(TokensIdHtml.BODYC)) {
 			errorSintactico("Se esperaba </body> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		return body;
 	}
 
-	private Etiqueta obtenerEtiqueta(Token token) {
+	private Etiqueta obtenerEtiqueta(TokenHtml token) {
 		switch (token.token) {
 		case H1I:
 			H1 h1 = new H1(obtenerElemento());
-			if (!lex.getActualToken().getToken().equals(TokensId.H1C))
+			if (!lex.getActualToken().getToken().equals(TokensIdHtml.H1C))
 				errorSintactico("Se esperaba '</h1>' y se ha obtenido " + lex.getActualToken().getLexeme(),
 						lex.getActualToken().getLine());
 			return h1;
 		case H2I:
 			H2 h2 = new H2(obtenerElemento());
-			if (!lex.getActualToken().getToken().equals(TokensId.H2C))
+			if (!lex.getActualToken().getToken().equals(TokensIdHtml.H2C))
 				errorSintactico("Se esperaba '</h2>' y se ha obtenido " + lex.getActualToken().getLexeme(),
 						lex.getActualToken().getLine());
 			return h2;
 		case PI:
 			P p = new P(obtenerElemento());
-			if (!lex.getActualToken().getToken().equals(TokensId.PC))
+			if (!lex.getActualToken().getToken().equals(TokensIdHtml.PC))
 				errorSintactico("Se esperaba '</p>' y se ha obtenido " + lex.getActualToken().getLexeme(),
 						lex.getActualToken().getLine());
 			return p;
@@ -96,11 +96,11 @@ public class Parser {
 	}
 	
 	private List<Elemento> obtenerElemento(){
-		Token tok = lex.getToken();
+		TokenHtml tok = lex.getToken();
 		
 		List<Elemento> atributos = new ArrayList<Elemento>();
-		while((tok.token == TokensId.TEXTO) || (tok.token == TokensId.CURSIVAI) || (tok.token == TokensId.NEGRITAI) 
-				|| (tok.token == TokensId.UNDERLINEI)) {
+		while((tok.token == TokensIdHtml.TEXTO) || (tok.token == TokensIdHtml.CURSIVAI) || (tok.token == TokensIdHtml.NEGRITAI) 
+				|| (tok.token == TokensIdHtml.UNDERLINEI)) {
 			Elemento atributo = obtenerAtributoBody(tok);
 			if(atributo != null)
 				atributos.add(atributo);
@@ -110,23 +110,23 @@ public class Parser {
 		return atributos;
 	}
 	
-	private Elemento obtenerAtributoBody(Token tok) {
+	private Elemento obtenerAtributoBody(TokenHtml tok) {
 		switch (tok.getToken()) {
 			case TEXTO:
 				return new Texto(tok.lexeme);
 			case CURSIVAI:
 				Cursiva cursiva = new Cursiva(obtenerTextos());
-				if(!lex.getActualToken().getToken().equals(TokensId.CURSIVAC))
+				if(!lex.getActualToken().getToken().equals(TokensIdHtml.CURSIVAC))
 					errorSintactico("Se esperaba '</i>' y se ha obtenido " + lex.getActualToken().getLexeme(), lex.getActualToken().getLine());
 				return cursiva;
 			case UNDERLINEI:
 				Subrayado underline = new Subrayado(obtenerTextos());
-				if(!lex.getActualToken().getToken().equals(TokensId.UNDERLINEC))
+				if(!lex.getActualToken().getToken().equals(TokensIdHtml.UNDERLINEC))
 					errorSintactico("Se esperaba '</u>' y se ha obtenido " + lex.getActualToken().getLexeme(), lex.getActualToken().getLine());
 				return underline;
 			case NEGRITAI:
 				Negrita negrita = new Negrita(obtenerTextos());
-				if(!lex.getActualToken().getToken().equals(TokensId.NEGRITAC))
+				if(!lex.getActualToken().getToken().equals(TokensIdHtml.NEGRITAC))
 					errorSintactico("Se esperaba '</b>' y se ha obtenido " + lex.getActualToken().getLexeme(), lex.getActualToken().getLine());
 				return negrita;
 			default:
@@ -137,8 +137,8 @@ public class Parser {
 	
 	private List<Texto> obtenerTextos() {
 		List<Texto> textos = new ArrayList<Texto>();
-		Token tok = lex.getToken();
-		while(tok.getToken().equals(TokensId.TEXTO)) {
+		TokenHtml tok = lex.getToken();
+		while(tok.getToken().equals(TokensIdHtml.TEXTO)) {
 			Texto texto = new Texto(tok.lexeme);
 			textos.add(texto);
 			tok = lex.getToken();
@@ -147,50 +147,50 @@ public class Parser {
 	}
 
 	public Title parseTitle() {
-		Token token = lex.getToken();
-		if (!token.getToken().equals(TokensId.TITLEI)) {
+		TokenHtml token = lex.getToken();
+		if (!token.getToken().equals(TokensIdHtml.TITLEI)) {
 			errorSintactico("Se esperaba <title> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
 		List<Texto> textos = new ArrayList<Texto>();
-		while (token.getToken().equals(TokensId.TEXTO)) {
+		while (token.getToken().equals(TokensIdHtml.TEXTO)) {
 			textos.add(new Texto(token.getLexeme()));
 			token = lex.getToken();
 		}
-		if (!token.getToken().equals(TokensId.TITLEC)) {
+		if (!token.getToken().equals(TokensIdHtml.TITLEC)) {
 			errorSintactico("Se esperaba </title> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		return new Title(textos);
 	}
 
 	public Link parseLink() {
-		Token token = lex.getToken();
-		if (!token.getToken().equals(TokensId.LINKI))
+		TokenHtml token = lex.getToken();
+		if (!token.getToken().equals(TokensIdHtml.LINKI))
 			errorSintactico("Se esperaba '<link' y se ha encontrado " + token.getLexeme(), token.getLine());
 
 		token = lex.getToken();
-		if (!token.getToken().equals(TokensId.HREFI)) {
+		if (!token.getToken().equals(TokensIdHtml.HREFI)) {
 			errorSintactico("Se esperaba <href> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
 		Href href = new Href(new Cadena(token.getLexeme()));
 
 		token = lex.getToken();
-		if (!token.getToken().equals(TokensId.RELI)) {
+		if (!token.getToken().equals(TokensIdHtml.RELI)) {
 			errorSintactico("Se esperaba <rel> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
 		Rel rel = new Rel(new Cadena(token.getLexeme()));
 
 		token = lex.getToken();
-		if (!token.getToken().equals(TokensId.TYPEI)) {
+		if (!token.getToken().equals(TokensIdHtml.TYPEI)) {
 			errorSintactico("Se esperaba <type> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
 		Type type = new Type(new Cadena(token.getLexeme()));
 
 		token = lex.getToken();
-		if (!token.getToken().equals(TokensId.CIERRE)) {
+		if (!token.getToken().equals(TokensIdHtml.CIERRE)) {
 			errorSintactico("Se esperaba > y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		
