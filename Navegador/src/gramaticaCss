@@ -1,12 +1,12 @@
 Programa : ELEMENTO*
 ELEMENTO: NOMBRE_ELEMENTO LLAVE_INICIO SENTENCIA* LLAVE_FIN
-NOMBRE_ELEMENTO: H1 | H2 | P
+NOMBRE_ELEMENTO: h1 | h2 | p
 SENTENCIA: ATRIBUTO DOS_PUNTOS VALOR PUNTO_COMA
 ATRIBUTO: color | font-size | text-align | font-style 
 VALOR: COLOR | TEXT_ALIGMENT | FONT_STYLE | SIZE
 LLAVE_INICIO: {
-LLAVE_FIN: {
-COLOR: black | green | blueç
+LLAVE_FIN: 
+COLOR: black | green | blue
 TEXT_ALIGMENT: left | right | center
 FONT_STYLE: normal | italic
 FONT_SIZE: [0-9]*px
