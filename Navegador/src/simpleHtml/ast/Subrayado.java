@@ -1,23 +1,21 @@
 package simpleHtml.ast;
 
-import java.util.List;
-
 import simpleHtml.visitor.Visitor;
 
 public class Subrayado implements Elemento {
 
-	public List<Texto> getElementos() {
-		return elementos;
+	String cadena;
+
+	public void setElementos(String cadena) {
+		this.cadena = cadena;
 	}
 
-	public void setElementos(List<Texto> elementos) {
-		this.elementos = elementos;
+	public Subrayado(String cadena) {
+		this.cadena = cadena;
 	}
-
-	List<Texto> elementos;
-
-	public Subrayado(List<Texto> elementos) {
-		this.elementos = elementos;
+	
+	public String getCadena() {
+		return cadena;
 	}
 
 	@Override

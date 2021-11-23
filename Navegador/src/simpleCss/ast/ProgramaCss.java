@@ -3,15 +3,17 @@ package simpleCss.ast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Programa {
+import simpleCss.visitor.Visitor;
+
+public class ProgramaCss implements AstCss {
 	List<Campo> atributos;
 
-	public Programa(List<Campo> atributos) {
+	public ProgramaCss(List<Campo> atributos) {
 		super();
 		this.atributos = atributos;
 	}
 	
-	public Programa() {
+	public ProgramaCss() {
 		super();
 		this.atributos = new ArrayList<Campo>();
 	}
@@ -22,6 +24,11 @@ public class Programa {
 
 	public void setAtributos(List<Campo> atributos) {
 		this.atributos = atributos;
+	}
+
+	@Override
+	public Object accept(Visitor v, Object param) {
+		return v.visit(this, param);
 	}
 	
 	

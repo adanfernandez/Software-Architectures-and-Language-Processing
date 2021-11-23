@@ -6,7 +6,7 @@ public class TextoFormated {
 	private Double size;
 	private String style;
 	
-	public TextoFormated(String contenido, String color, String size, String style) {
+	public TextoFormated(String contenido, String color, Double size, String style) {
 		super();
 		this.contenido = contenido;
 		this.color = color;

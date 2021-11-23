@@ -1,5 +1,7 @@
 package simpleHtml.ast;
 
+import java.util.List;
+
 import simpleHtml.visitor.Visitor;
 
 public class Texto implements Elemento {
@@ -21,5 +23,6 @@ public class Texto implements Elemento {
 	public Object accept(Visitor v, Object param) {
 		return v.visit(this, param);
 	}
+
 	
 }

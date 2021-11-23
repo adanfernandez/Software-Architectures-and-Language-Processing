@@ -2,8 +2,6 @@ package main;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import simpleCss.parser.LexiconCss;
-import simpleCss.parser.ParserCss;
 import simpleHtml.ast.Programa;
 import simpleHtml.parser.LexiconHtml;
 import simpleHtml.parser.ParserHtml;
@@ -18,12 +16,17 @@ public class Main {
 		LexiconHtml lexiconHtml = new LexiconHtml(fileReaderHtml);
 		ParserHtml parserHtml = new ParserHtml(lexiconHtml);
 		Programa programa = parserHtml.parse();
-		programa.toString();
 		
+		PrintVisitor printVisitor = new PrintVisitor();
+		System.out.println(printVisitor.visit(programa, null));
+		
+		/*
 		FileReader fileReaderCss = new FileReader("src\\EX1.css");
 		LexiconCss lexiconCss = new LexiconCss(fileReaderCss);
 		ParserCss parserCss = new ParserCss(lexiconCss);
-		simpleCss.ast.Programa prCss = parserCss.parse();
+		simpleCss.ast.ProgramaCss prCss = parserCss.parse();
 		prCss.toString();
+		*/
+		
 	}
 }

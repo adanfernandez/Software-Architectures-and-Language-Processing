@@ -123,26 +123,20 @@ public class PrintVisitor implements Visitor {
 
 	@Override
 	public Object visit(Negrita negrita, Object param) {
-		String s= (String) param + "Negrita\n";
-		for (Elemento h : negrita.getElementos())
-			s = s + (String) h.accept(this,(String)param+sp)+"\n";
-		return s;
+		return String.format("Negrita: %s\n", negrita.getCadena());
+
 	}
 
 	@Override
 	public Object visit(Cursiva cursiva, Object param) {
-		String s= (String) param + "Cursiva\n";
-		for (Elemento h : cursiva.getElementos())
-			s = s + (String) h.accept(this,(String)param+sp)+"\n";
-		return s;
+		return String.format("Cursiva: %s\n", cursiva.getCadena());
+
 	}
 
 	@Override
 	public Object visit(Subrayado subrayado, Object param) {
-		String s= (String) param + "Subrayado\n";
-		for (Elemento h : subrayado.getElementos())
-			s = s + (String) h.accept(this,(String)param+sp)+"\n";
-		return s;
+		return String.format("Subrayado: %s\n", subrayado.getCadena());
+
 	}
 
 }

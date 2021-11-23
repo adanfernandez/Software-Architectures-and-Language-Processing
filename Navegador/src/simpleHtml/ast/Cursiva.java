@@ -6,23 +6,22 @@ import simpleHtml.visitor.Visitor;
 
 public class Cursiva implements Elemento {
 
-	public List<Texto> getElementos() {
-		return elementos;
+	String cadena;
+
+	public void setElementos(String cadena) {
+		this.cadena = cadena;
 	}
 
-	public void setElementos(List<Texto> elementos) {
-		this.elementos = elementos;
+	public Cursiva(String cadena) {
+		this.cadena = cadena;
+	}
+	
+	public String getCadena() {
+		return cadena;
 	}
 
-	List<Texto> elementos;
-	
-	public Cursiva (List<Texto> elementos) {
-		this.elementos = elementos;
-	}
-	
 	@Override
 	public Object accept(Visitor v, Object param) {
 		return v.visit(this, param);
 	}
-
 }

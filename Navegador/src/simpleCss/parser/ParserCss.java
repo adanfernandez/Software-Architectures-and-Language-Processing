@@ -14,8 +14,8 @@ public class ParserCss {
 		this.lex = lex;
 	}
 	
-	public Programa parse () {
-		Programa programa = new Programa();
+	public ProgramaCss parse () {
+		ProgramaCss programa = new ProgramaCss();
 		TokenCss token = lex.getToken();
 		
 		while(token.getToken().equals(TokensIdCss.H1) || token.getToken().equals(TokensIdCss.H2) || token.getToken().equals(TokensIdCss.P)) {
