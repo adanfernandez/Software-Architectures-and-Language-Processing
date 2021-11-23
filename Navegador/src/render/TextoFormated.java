@@ -3,7 +3,7 @@ package render;
 public class TextoFormated {
 	private String contenido;
 	private String color;
-	private String size;
+	private Double size;
 	private String style;
 	
 	public TextoFormated(String contenido, String color, String size, String style) {
@@ -30,11 +30,11 @@ public class TextoFormated {
 		this.color = color;
 	}
 
-	public String getSize() {
+	public Double getSize() {
 		return size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(Double size) {
 		this.size = size;
 	}
 
@@ -44,5 +44,12 @@ public class TextoFormated {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+	
+	public double calculateMetrics() {
+		if(contenido == null) {
+			return 0;
+		}
+		return this.contenido.length() * size;
 	}
 }
