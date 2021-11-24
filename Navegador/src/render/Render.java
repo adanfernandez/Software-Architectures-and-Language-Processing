@@ -43,8 +43,9 @@ public class Render implements Visitor {
 		String title = (String) p.getHead().accept(this, param);
 		PageFormated page = (PageFormated) p.getBody().accept(this, param);
 		page.setTitle(title);
+		@SuppressWarnings("unchecked")
 		List<LineaFormated> lineas = (List<LineaFormated>) p.getBody().accept(this, param);
-		page.setLineas(null);
+		page.setLineas(lineas);
 		return page;
 	}
 
@@ -100,11 +101,10 @@ public class Render implements Visitor {
 
 	@Override
 	public Object visit(H1 h1, Object param) {
-		String align = bcss.buscar("h2", "text-align", defaultCss);
+		String align = bcss.buscar("h1", "text-align", defaultCss);
 		if (align == null)
-			align = bcss.buscar("h2", "text-align", defaultCss);
+			align = bcss.buscar("h1", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
-		List<Texto> textos = new ArrayList<Texto>();
 		String  s = "h1";
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
@@ -115,20 +115,54 @@ public class Render implements Visitor {
 		String style = bcss.buscar(s, "font-style", programaCss);
 		if(style == null)
 			style = bcss.buscar(s, "font-style", defaultCss);
-		String cadena = "";
-		return null;
+		for(Elemento elemento : h1.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+		}
+		return lineaFormated;
 	}
 
 	@Override
 	public Object visit(H2 h2, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String align = bcss.buscar("h2", "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar("h2", "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		String  s = "h1";
+		String color = bcss.buscar(s, "color", programaCss);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		String style = bcss.buscar(s, "font-style", programaCss);
+		if(style == null)
+			style = bcss.buscar(s, "font-style", defaultCss);
+		for(Elemento elemento : h2.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+		}
+		return lineaFormated;
 	}
 
 	@Override
 	public Object visit(P p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String align = bcss.buscar("p", "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar("p", "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		String  s = "h1";
+		String color = bcss.buscar(s, "color", programaCss);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		String style = bcss.buscar(s, "font-style", programaCss);
+		if(style == null)
+			style = bcss.buscar(s, "font-style", defaultCss);
+		for(Elemento elemento : p.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+		}
+		return lineaFormated;
 	}
 
 	@Override
