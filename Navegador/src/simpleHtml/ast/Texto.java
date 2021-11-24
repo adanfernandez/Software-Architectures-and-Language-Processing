@@ -5,18 +5,19 @@ import java.util.List;
 import simpleHtml.visitor.Visitor;
 
 public class Texto implements Elemento {
-	public String getCadena() {
-		return cadena;
+
+	public List<Normal> getElementos() {
+		return elementos;
 	}
 
-	public void setCadena(String cadena) {
-		this.cadena = cadena;
+	public void setElementos(List<Normal> elementos) {
+		this.elementos = elementos;
 	}
 
-	public String cadena;
-	
-	public Texto (String cadena) {
-		this.cadena = cadena;
+	List<Normal> elementos;
+
+	public Texto (List<Normal> elementos) {
+		this.elementos = elementos;
 	}
 
 	@Override
@@ -24,5 +25,4 @@ public class Texto implements Elemento {
 		return v.visit(this, param);
 	}
 
-	
 }

@@ -19,4 +19,5 @@ public interface Visitor {
 	Object visit(Negrita negrita, Object param);
 	Object visit(Cursiva cursiva, Object param);
 	Object visit(Subrayado subrayado, Object param);
+	Object visit(Normal normal, Object param);
 }

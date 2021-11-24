@@ -11,12 +11,12 @@ public class H1 implements Etiqueta{
 	}
 
 
-	public void setElementos(List<Elemento> elementos) {
+	public void setElementos( List<Elemento>elementos) {
 		this.elementos = elementos;
 	}
 
 
-	List<Elemento> elementos;
+	 List<Elemento> elementos;
 
 	public H1(List<Elemento> elementos) {
 		super();

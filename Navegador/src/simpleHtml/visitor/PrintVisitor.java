@@ -11,6 +11,7 @@ import simpleHtml.ast.Head;
 import simpleHtml.ast.Href;
 import simpleHtml.ast.Link;
 import simpleHtml.ast.Negrita;
+import simpleHtml.ast.Normal;
 import simpleHtml.ast.P;
 import simpleHtml.ast.Programa;
 import simpleHtml.ast.Rel;
@@ -74,11 +75,6 @@ public class PrintVisitor implements Visitor {
 		return String.format("Cadena: %s\n", cadena.getCadena());
 	}
 
-	@Override
-	public Object visit(Texto cadena, Object param) {
-		return String.format("Texto: %s\n", cadena.getCadena());
-
-	}
 
 	@Override
 	public Object visit(Body body, Object param) {
@@ -91,7 +87,7 @@ public class PrintVisitor implements Visitor {
 	@Override
 	public Object visit(Title title, Object param) {
 		String s = (String)param+"Title\n";
-		for(Texto texto : title.getTextos()) {
+		for(Normal texto : title.getTextos()) {
 			s += texto.accept(this, (String)param+sp);
 		}
 		return s;
@@ -120,23 +116,43 @@ public class PrintVisitor implements Visitor {
 			s = s + (String) h.accept(this,(String)param+sp)+"\n";
 		return s;
 	}
+	
+	
+	@Override
+	public Object visit(Texto texto, Object param) {
+		String s= (String) param + "Texto\n";
+		for (Normal h : texto.getElementos())
+			s = s + (String) h.accept(this,(String)param+sp)+"\n";
+		return s;
+	}
 
 	@Override
 	public Object visit(Negrita negrita, Object param) {
-		return String.format("Negrita: %s\n", negrita.getCadena());
-
+		String s= (String) param + "Negrita\n";
+		for (Normal h : negrita.getElementos())
+			s = s + (String) h.accept(this,(String)param+sp)+"\n";
+		return s;
 	}
 
 	@Override
 	public Object visit(Cursiva cursiva, Object param) {
-		return String.format("Cursiva: %s\n", cursiva.getCadena());
-
+		String s= (String) param + "Cursiva\n";
+		for (Normal h : cursiva.getElementos())
+			s = s + (String) h.accept(this,(String)param+sp)+"\n";
+		return s;
 	}
 
 	@Override
 	public Object visit(Subrayado subrayado, Object param) {
-		return String.format("Subrayado: %s\n", subrayado.getCadena());
+		String s= (String) param + "Subrayado\n";
+		for (Normal h : subrayado.getElementos())
+			s = s + (String) h.accept(this,(String)param+sp)+"\n";
+		return s;
+	}
 
+	@Override
+	public Object visit(Normal normal, Object param) {
+		return String.format("\tNormal: %s\n", normal.getCadena());
 	}
 
 }

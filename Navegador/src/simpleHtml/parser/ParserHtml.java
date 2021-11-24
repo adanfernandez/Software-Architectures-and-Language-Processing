@@ -102,9 +102,19 @@ public class ParserHtml {
 		while((tok.token == TokensIdHtml.TEXTO) || (tok.token == TokensIdHtml.CURSIVAI) || (tok.token == TokensIdHtml.NEGRITAI) 
 				|| (tok.token == TokensIdHtml.UNDERLINEI)) {
 			Elemento atributo = obtenerAtributoBody(tok);
+			
+			if(tok.token == TokensIdHtml.TEXTO) {
+				atributo = new Texto(obtenerTextos());
+			}
+			
 			if(atributo != null)
 				atributos.add(atributo);
-			tok = lex.getToken();
+			
+			if(tok.token == TokensIdHtml.TEXTO) {
+				tok = lex.getActualToken();
+			} else {
+				tok = lex.getToken();
+			}
 		}
 		
 		return atributos;
@@ -113,18 +123,20 @@ public class ParserHtml {
 	private Elemento obtenerAtributoBody(TokenHtml tok) {
 		switch (tok.getToken()) {
 			case TEXTO:
-				return new Texto(tok.lexeme);
+				return null;
 			case CURSIVAI:
 				Cursiva cursiva = new Cursiva(obtenerTextos());
 				if(!lex.getActualToken().getToken().equals(TokensIdHtml.CURSIVAC))
 					errorSintactico("Se esperaba '</i>' y se ha obtenido " + lex.getActualToken().getLexeme(), lex.getActualToken().getLine());
 				return cursiva;
 			case UNDERLINEI:
+				lex.getToken();
 				Subrayado underline = new Subrayado(obtenerTextos());
 				if(!lex.getActualToken().getToken().equals(TokensIdHtml.UNDERLINEC))
 					errorSintactico("Se esperaba '</u>' y se ha obtenido " + lex.getActualToken().getLexeme(), lex.getActualToken().getLine());
 				return underline;
 			case NEGRITAI:
+				lex.getToken();
 				Negrita negrita = new Negrita(obtenerTextos());
 				if(!lex.getActualToken().getToken().equals(TokensIdHtml.NEGRITAC))
 					errorSintactico("Se esperaba '</b>' y se ha obtenido " + lex.getActualToken().getLexeme(), lex.getActualToken().getLine());
@@ -135,11 +147,14 @@ public class ParserHtml {
 		}
 	}
 	
-	private List<Texto> obtenerTextos() {
-		List<Texto> textos = new ArrayList<Texto>();
-		TokenHtml tok = lex.getToken();
+	private List<Normal> obtenerTextos() {
+		List<Normal> textos = new ArrayList<Normal>();
+		TokenHtml tok = lex.getActualToken();
+		if(!tok.getToken().equals(TokensIdHtml.TEXTO)) {
+			tok = lex.getToken();
+		}
 		while(tok.getToken().equals(TokensIdHtml.TEXTO)) {
-			Texto texto = new Texto(tok.lexeme);
+			Normal texto = new Normal(tok.lexeme);
 			textos.add(texto);
 			tok = lex.getToken();
 		}
@@ -152,9 +167,10 @@ public class ParserHtml {
 			errorSintactico("Se esperaba <title> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
-		List<Texto> textos = new ArrayList<Texto>();
+		List<Normal> textos = new ArrayList<Normal>();
 		while (token.getToken().equals(TokensIdHtml.TEXTO)) {
-			textos.add(new Texto(token.getLexeme()));
+			Normal normal = new Normal(token.getLexeme());
+			textos.add(normal);
 			token = lex.getToken();
 		}
 		if (!token.getToken().equals(TokensIdHtml.TITLEC)) {

@@ -7,7 +7,7 @@ import java.io.*;
 public class LexiconHtml {
 
 	// Gestión de tokens
-	List<TokenHtml> tokens = new ArrayList<TokenHtml>();
+	public List<TokenHtml> tokens = new ArrayList<TokenHtml>();
 	int i = 0; // Último token entregado en getToken()
 	// Gestión de lectura del fichero
 	FileReader filereader;

@@ -1,5 +1,6 @@
 package render;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import simpleCss.ast.ProgramaCss;
@@ -15,6 +16,7 @@ import simpleHtml.ast.Head;
 import simpleHtml.ast.Href;
 import simpleHtml.ast.Link;
 import simpleHtml.ast.Negrita;
+import simpleHtml.ast.Normal;
 import simpleHtml.ast.P;
 import simpleHtml.ast.Programa;
 import simpleHtml.ast.Rel;
@@ -76,10 +78,6 @@ public class Render implements Visitor {
 		return cadena.getCadena();
 	}
 
-	@Override
-	public Object visit(Texto cadena, Object param) {
-		return cadena.getCadena();
-	}
 
 	@Override
 	public Object visit(Body body, Object param) {
@@ -92,9 +90,9 @@ public class Render implements Visitor {
 
 	@Override
 	public Object visit(Title title, Object param) {
-		List<Texto> textos = title.getTextos();
+		List<Normal> textos = title.getTextos();
 		String cadena = "";
-		for (Texto texto : textos) {
+		for (Normal texto : textos) {
 			cadena += texto.accept(this, param);
 		}
 		return cadena;
@@ -106,20 +104,18 @@ public class Render implements Visitor {
 		if (align == null)
 			align = bcss.buscar("h2", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
-		for (Elemento elemento : h1.getElementos()) {
-			String  s = "h1";
-			String color = bcss.buscar(s, "color", programaCss);
-			if(color == null)
-				color = bcss.buscar(s, "color", defaultCss);
-			String size = bcss.buscar(s, "font-size", defaultCss);
-			if(size == null)
-					size = bcss.buscar(s, "font-size", defaultCss);
-			String style = bcss.buscar(s, "font-style", programaCss);
-			if(style == null)
-				style = bcss.buscar(s, "font-style", defaultCss);
-			
-		}
-
+		List<Texto> textos = new ArrayList<Texto>();
+		String  s = "h1";
+		String color = bcss.buscar(s, "color", programaCss);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		String style = bcss.buscar(s, "font-style", programaCss);
+		if(style == null)
+			style = bcss.buscar(s, "font-style", defaultCss);
+		String cadena = "";
 		return null;
 	}
 
@@ -152,6 +148,12 @@ public class Render implements Visitor {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+
+	@Override
+	public Object visit(Texto cadena, Object param) {
+		return null;
+	}
 
 	public BuscarParametrosCssVisitor getBcss() {
 		return bcss;
@@ -175,6 +177,12 @@ public class Render implements Visitor {
 
 	public void setDefaultCss(ProgramaCss defaultCss) {
 		this.defaultCss = defaultCss;
+	}
+
+	@Override
+	public Object visit(Normal normal, Object param) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
