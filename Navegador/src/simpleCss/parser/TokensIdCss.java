@@ -14,6 +14,7 @@ public enum TokensIdCss {
 	SIZE,
 	ITALIC,
 	NORMAL,
+	NEGRITA,
 	CENTER,
 	LEFT,
 	RIGHT,

@@ -97,6 +97,9 @@ public class LexiconCss {
 						case "italic":
 							tokens.add(new TokenCss(TokensIdCss.ITALIC, ident, line));
 							break;
+						case "bold":
+							tokens.add(new TokenCss(TokensIdCss.NEGRITA, ident, line));
+							break;
 						case "normal":
 							tokens.add(new TokenCss(TokensIdCss.NORMAL, ident, line));
 							break;

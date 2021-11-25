@@ -1,7 +1,5 @@
 package simpleHtml.ast;
 
-import java.util.List;
-
 import simpleHtml.visitor.Visitor;
 
 public class Normal implements AstHtml {
@@ -13,7 +11,7 @@ public class Normal implements AstHtml {
 		this.cadena = cadena;
 	}
 
-	public String cadena;
+	String cadena;
 	
 	public Normal (String cadena) {
 		this.cadena = cadena;

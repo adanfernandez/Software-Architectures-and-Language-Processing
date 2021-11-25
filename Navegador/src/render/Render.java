@@ -1,6 +1,5 @@
 package render;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import simpleCss.ast.ProgramaCss;
@@ -167,26 +166,77 @@ public class Render implements Visitor {
 
 	@Override
 	public Object visit(Negrita negrita, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String s = (String) param;
+		String align = bcss.buscar(s, "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar(s, "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		String color = bcss.buscar(s, "color", programaCss);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		String style = "bold";
+		for(Normal elemento : negrita.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, new TextoFormated("", color, Double.parseDouble(size), style)));
+		}
+		return lineaFormated;
 	}
 
 	@Override
 	public Object visit(Cursiva cursiva, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String s = (String) param;
+		String align = bcss.buscar(s, "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar(s, "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		String color = bcss.buscar(s, "color", programaCss);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		String style = "italic";
+		for(Normal elemento : cursiva.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, new TextoFormated("", color, Double.parseDouble(size), style)));
+		}
+		return lineaFormated;
 	}
 
 	@Override
 	public Object visit(Subrayado subrayado, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String s = (String) param;
+		String align = bcss.buscar(s, "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar(s, "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		String color = bcss.buscar(s, "color", programaCss);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		
+		String style = "underline";
+		for(Normal elemento : subrayado.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, new TextoFormated("", color, Double.parseDouble(size), style)));
+		}
+		return lineaFormated;
 	}
 	
 
 	@Override
 	public Object visit(Texto cadena, Object param) {
-		return null;
+		String s = (String) param;
+		String align = bcss.buscar(s, "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar(s, "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		for(Normal elemento : cadena.getElementos()) {
+			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+		}
+		return lineaFormated;
 	}
 
 	public BuscarParametrosCssVisitor getBcss() {
@@ -215,8 +265,7 @@ public class Render implements Visitor {
 
 	@Override
 	public Object visit(Normal normal, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return normal.getCadena();
 	}
 
 }
