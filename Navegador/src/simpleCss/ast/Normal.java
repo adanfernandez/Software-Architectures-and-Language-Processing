@@ -1,5 +1,15 @@
 package simpleCss.ast;
 
-public class Normal implements FontStyleValor {
+import simpleCss.visitor.Visitor;
 
+public class Normal implements FontStyleValor {
+	@Override
+	public String toString() {
+		return "normal";
+	}
+	
+	@Override
+	public Object accept(Visitor v, Object param) {
+		return v.visit(this, param);
+	}
 }

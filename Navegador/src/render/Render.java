@@ -1,5 +1,6 @@
 package render;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import simpleCss.ast.ProgramaCss;
@@ -42,15 +43,12 @@ public class Render implements Visitor {
 		String title = (String) p.getHead().accept(this, param);
 		PageFormated page = (PageFormated) p.getBody().accept(this, param);
 		page.setTitle(title);
-		@SuppressWarnings("unchecked")
-		List<LineaFormated> lineas = (List<LineaFormated>) p.getBody().accept(this, param);
-		page.setLineas(lineas);
 		return page;
 	}
 
 	@Override
 	public Object visit(Head p, Object param) {
-		return p.accept(this, param);
+		return p.getTitle().accept(this, param);
 	}
 
 	@Override
@@ -81,9 +79,9 @@ public class Render implements Visitor {
 
 	@Override
 	public Object visit(Body body, Object param) {
-		PageFormated page = new PageFormated(null, null);
+		PageFormated page = new PageFormated(null, new ArrayList<LineaFormated>());
 		for (Etiqueta etiqueta : body.getEtiquetas()) {
-			etiqueta.accept(this, param);
+			page.getLineas().add((LineaFormated) etiqueta.accept(this, param));
 		}
 		return page;
 	}
@@ -93,7 +91,7 @@ public class Render implements Visitor {
 		List<Normal> textos = title.getTextos();
 		String cadena = "";
 		for (Normal texto : textos) {
-			cadena += texto.accept(this, param);
+			cadena += " " + texto.accept(this, param);
 		}
 		return cadena;
 	}
@@ -104,18 +102,8 @@ public class Render implements Visitor {
 		if (align == null)
 			align = bcss.buscar("h1", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
-		String  s = "h1";
-		String color = bcss.buscar(s, "color", programaCss);
-		if(color == null)
-			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
-		if(size == null)
-				size = bcss.buscar(s, "font-size", defaultCss);
-		String style = bcss.buscar(s, "font-style", programaCss);
-		if(style == null)
-			style = bcss.buscar(s, "font-style", defaultCss);
 		for(Elemento elemento : h1.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+			lineaFormated.getTextos().addAll((List<TextoFormated>)elemento.accept(this, "h1"));
 		}
 		return lineaFormated;
 	}
@@ -126,40 +114,21 @@ public class Render implements Visitor {
 		if (align == null)
 			align = bcss.buscar("h2", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
-		String  s = "h1";
-		String color = bcss.buscar(s, "color", programaCss);
-		if(color == null)
-			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
-		if(size == null)
-				size = bcss.buscar(s, "font-size", defaultCss);
-		String style = bcss.buscar(s, "font-style", programaCss);
-		if(style == null)
-			style = bcss.buscar(s, "font-style", defaultCss);
 		for(Elemento elemento : h2.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+			lineaFormated.getTextos().addAll((List<TextoFormated>)elemento.accept(this, "h2"));
 		}
 		return lineaFormated;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object visit(P p, Object param) {
 		String align = bcss.buscar("p", "text-align", defaultCss);
 		if (align == null)
 			align = bcss.buscar("p", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
-		String  s = "h1";
-		String color = bcss.buscar(s, "color", programaCss);
-		if(color == null)
-			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
-		if(size == null)
-				size = bcss.buscar(s, "font-size", defaultCss);
-		String style = bcss.buscar(s, "font-style", programaCss);
-		if(style == null)
-			style = bcss.buscar(s, "font-style", defaultCss);
 		for(Elemento elemento : p.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+			lineaFormated.getTextos().addAll((List<TextoFormated>)elemento.accept(this, "p"));
 		}
 		return lineaFormated;
 	}
@@ -178,10 +147,11 @@ public class Render implements Visitor {
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
 		String style = "bold";
+		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : negrita.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, new TextoFormated("", color, Double.parseDouble(size), style)));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
 		}
-		return lineaFormated;
+		return textos;
 	}
 
 	@Override
@@ -190,7 +160,6 @@ public class Render implements Visitor {
 		String align = bcss.buscar(s, "text-align", defaultCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
-		LineaFormated lineaFormated = new LineaFormated(align);
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
@@ -198,10 +167,11 @@ public class Render implements Visitor {
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
 		String style = "italic";
+		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : cursiva.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, new TextoFormated("", color, Double.parseDouble(size), style)));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
 		}
-		return lineaFormated;
+		return textos;
 	}
 
 	@Override
@@ -210,33 +180,39 @@ public class Render implements Visitor {
 		String align = bcss.buscar(s, "text-align", defaultCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
-		LineaFormated lineaFormated = new LineaFormated(align);
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
 		String size = bcss.buscar(s, "font-size", defaultCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
-		
 		String style = "underline";
+		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : subrayado.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, new TextoFormated("", color, Double.parseDouble(size), style)));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
 		}
-		return lineaFormated;
+		return textos;
 	}
 	
 
 	@Override
 	public Object visit(Texto cadena, Object param) {
 		String s = (String) param;
+		String color = bcss.buscar(s, "color", programaCss);
 		String align = bcss.buscar(s, "text-align", defaultCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
-		LineaFormated lineaFormated = new LineaFormated(align);
+		if(color == null)
+			color = bcss.buscar(s, "color", defaultCss);
+		String size = bcss.buscar(s, "font-size", defaultCss);
+		if(size == null)
+				size = bcss.buscar(s, "font-size", defaultCss);
+		String style = "normal";
+		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : cadena.getElementos()) {
-			lineaFormated.getTextos().add((TextoFormated) elemento.accept(this, null));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
 		}
-		return lineaFormated;
+		return textos;
 	}
 
 	public BuscarParametrosCssVisitor getBcss() {

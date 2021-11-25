@@ -1,5 +1,15 @@
 package simpleCss.ast;
 
-public class Negrita implements FontStyleValor {
+import simpleCss.visitor.Visitor;
 
+public class Negrita implements FontStyleValor {
+	@Override
+	public String toString() {
+		return "bold";
+	}
+	
+	@Override
+	public Object accept(Visitor v, Object param) {
+		return v.visit(this, param);
+	}
 }

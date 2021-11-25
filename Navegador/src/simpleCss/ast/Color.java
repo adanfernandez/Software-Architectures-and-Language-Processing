@@ -1,5 +1,7 @@
 package simpleCss.ast;
 
+import simpleCss.visitor.Visitor;
+
 public class Color implements Asignacion {
 	ColorValor valor;
 
@@ -14,5 +16,15 @@ public class Color implements Asignacion {
 
 	public void setValor(ColorValor valor) {
 		this.valor = valor;
+	}
+	
+	@Override
+	public Object accept(Visitor v, Object param) {
+		return v.visit(this, param);
+	}
+	
+	@Override
+	public String toString() {
+		return "color";
 	}
 }

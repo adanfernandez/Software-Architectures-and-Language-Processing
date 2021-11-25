@@ -11,6 +11,7 @@ import simpleCss.ast.H1;
 import simpleCss.ast.H2;
 import simpleCss.ast.Italic;
 import simpleCss.ast.Left;
+import simpleCss.ast.Negrita;
 import simpleCss.ast.Normal;
 import simpleCss.ast.P;
 import simpleCss.ast.ProgramaCss;
@@ -118,6 +119,12 @@ public class PrintCss implements Visitor {
 
 	@Override
 	public Object visit(TextAlign p, Object param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object visit(Negrita negrita, Object param) {
 		// TODO Auto-generated method stub
 		return null;
 	}

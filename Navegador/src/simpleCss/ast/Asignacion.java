@@ -1,5 +1,5 @@
 package simpleCss.ast;
 
-public interface Asignacion {
+public interface Asignacion extends AstCss {
 
 }

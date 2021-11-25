@@ -1,5 +1,7 @@
 package simpleCss.ast;
 
+import simpleCss.visitor.Visitor;
+
 public class FontStyle implements Asignacion {
 	FontStyleValor valor;
 
@@ -14,5 +16,15 @@ public class FontStyle implements Asignacion {
 
 	public void setValor(FontStyleValor valor) {
 		this.valor = valor;
+	}
+	
+	@Override
+	public Object accept(Visitor v, Object param) {
+		return v.visit(this, param);
+	}
+	
+	@Override
+	public String toString() {
+		return "font-style";
 	}
 }

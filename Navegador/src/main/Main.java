@@ -2,13 +2,14 @@ package main;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import render.PageFormated;
+import render.Render;
 import simpleCss.parser.LexiconCss;
 import simpleCss.parser.ParserCss;
+import simpleCss.visitor.BuscarParametrosCssVisitor;
 import simpleHtml.ast.Programa;
 import simpleHtml.parser.LexiconHtml;
 import simpleHtml.parser.ParserHtml;
-import simpleHtml.parser.TokenHtml;
-import simpleHtml.visitor.PrintVisitor;
 
 
 public class Main {
@@ -39,5 +40,9 @@ public class Main {
 		defaultPrCss.toString();
 		
 		
+		
+		Render render = new Render(new BuscarParametrosCssVisitor(), prCss, defaultPrCss);
+		PageFormated page = (PageFormated) render.visit(programa, null);
+		System.out.println(page);
 	}
 }

@@ -1,5 +1,5 @@
 package simpleCss.ast;
 
-public interface Valor {
+public interface Valor extends AstCss{
 
 }
