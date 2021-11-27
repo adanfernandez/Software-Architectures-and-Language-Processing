@@ -3,7 +3,7 @@ h1 {
   font-size: 32px;
   text-align: left;
   font-style: bold;
-  width: 100px;
+  width: 100%;
 }
  
 h2 {
@@ -11,7 +11,7 @@ h2 {
   font-size: 16px;
   text-align: left;
   font-style: bold;
-  width: 100px;
+  width: 100%;
 }
 
 h3 {
@@ -19,7 +19,7 @@ h3 {
   font-size: 12px;
   text-align: left;
   font-style: bold;
-  width: 100px;
+  width: 100%;
 }
  
 p {
@@ -27,5 +27,5 @@ p {
   font-size: 12px;
   text-align: left;
   font-style: normal;
-  width: 100px;
+  width: 100%;
 }

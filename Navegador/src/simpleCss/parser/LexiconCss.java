@@ -149,7 +149,7 @@ public class LexiconCss {
 		do {
 			valor = nextChar();
 			lexReturned = lexReturned + (valor);
-		} while ((valor != 'p') && (valor != -1));
+		} while ((valor != 'p') && (valor != '%') && (valor != -1));
 		// returnChar(valor);
 		if (valor == 'p') {
 			// lexReturned = lexReturned+(valor);
@@ -160,6 +160,12 @@ public class LexiconCss {
 				errorLexico("Encontrado " + lexReturned + ". Se esperada un token SIZE.");
 				return null;
 			}
+		}
+		else if (valor == '%') {
+			return lexReturned;
+		} else {
+			errorLexico("Encontrado " + lexReturned + ". Se esperada un token SIZE.");
+			return null;
 		}
 		return lexReturned;
 	}

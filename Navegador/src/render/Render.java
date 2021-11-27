@@ -164,7 +164,7 @@ public class Render implements Visitor {
 		String style = "bold";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : negrita.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
 	}
@@ -187,7 +187,7 @@ public class Render implements Visitor {
 		String style = "italic";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : cursiva.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
 	}
@@ -210,7 +210,7 @@ public class Render implements Visitor {
 		String style = "underline";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : subrayado.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
 	}
@@ -234,7 +234,7 @@ public class Render implements Visitor {
 		String style = "normal";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : cadena.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
 	}
