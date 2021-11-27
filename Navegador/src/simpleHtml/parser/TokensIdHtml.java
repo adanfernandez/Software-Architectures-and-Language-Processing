@@ -19,6 +19,6 @@ public enum TokensIdHtml {
 	CURSIVAI, CURSIVAC,
 	UNDERLINEI, UNDERLINEC,
 	CADENA,
-	TEXTO
+	NORMAL
 	;
 }

@@ -97,9 +97,10 @@ public class Render implements Visitor {
 		return cadena;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object visit(H1 h1, Object param) {
-		String align = bcss.buscar("h1", "text-align", defaultCss);
+		String align = bcss.buscar("h1", "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar("h1", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
@@ -109,9 +110,10 @@ public class Render implements Visitor {
 		return lineaFormated;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object visit(H2 h2, Object param) {
-		String align = bcss.buscar("h2", "text-align", defaultCss);
+		String align = bcss.buscar("h2", "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar("h2", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
@@ -121,9 +123,10 @@ public class Render implements Visitor {
 		return lineaFormated;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object visit(H3 h3, Object param) {
-		String align = bcss.buscar("h3", "text-align", defaultCss);
+		String align = bcss.buscar("h3", "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar("h3", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
@@ -136,7 +139,7 @@ public class Render implements Visitor {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object visit(P p, Object param) {
-		String align = bcss.buscar("p", "text-align", defaultCss);
+		String align = bcss.buscar("p", "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar("p", "text-align", defaultCss);
 		LineaFormated lineaFormated = new LineaFormated(align);
@@ -149,16 +152,16 @@ public class Render implements Visitor {
 	@Override
 	public Object visit(Negrita negrita, Object param) {
 		String s = (String) param;
-		String align = bcss.buscar(s, "text-align", defaultCss);
+		String align = bcss.buscar(s, "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
+		String size = bcss.buscar(s, "font-size", programaCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
-		String width = bcss.buscar(s, "width", defaultCss);
+		String width = bcss.buscar(s, "width", programaCss);
 		if(width == null)
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "bold";
@@ -172,16 +175,16 @@ public class Render implements Visitor {
 	@Override
 	public Object visit(Cursiva cursiva, Object param) {
 		String s = (String) param;
-		String align = bcss.buscar(s, "text-align", defaultCss);
+		String align = bcss.buscar(s, "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
+		String size = bcss.buscar(s, "font-size", programaCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
-		String width = bcss.buscar(s, "width", defaultCss);
+		String width = bcss.buscar(s, "width", programaCss);
 		if(width == null)
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "italic";
@@ -195,16 +198,16 @@ public class Render implements Visitor {
 	@Override
 	public Object visit(Subrayado subrayado, Object param) {
 		String s = (String) param;
-		String align = bcss.buscar(s, "text-align", defaultCss);
+		String align = bcss.buscar(s, "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
+		String size = bcss.buscar(s, "font-size", programaCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
-		String width = bcss.buscar(s, "width", defaultCss);
+		String width = bcss.buscar(s, "width", programaCss);
 		if(width == null)
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "underline";
@@ -219,16 +222,16 @@ public class Render implements Visitor {
 	@Override
 	public Object visit(Texto cadena, Object param) {
 		String s = (String) param;
-		String color = bcss.buscar(s, "color", programaCss);
-		String align = bcss.buscar(s, "text-align", defaultCss);
+		String align = bcss.buscar(s, "text-align", programaCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
+		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
-		String size = bcss.buscar(s, "font-size", defaultCss);
+		String size = bcss.buscar(s, "font-size", programaCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
-		String width = bcss.buscar(s, "width", defaultCss);
+		String width = bcss.buscar(s, "width", programaCss);
 		if(width == null)
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "normal";

@@ -41,8 +41,7 @@ public class Main {
 		ParserCss defaultParserCss = new ParserCss(lexiconCss);
 		simpleCss.ast.ProgramaCss defaultPrCss = defaultParserCss.parse();
 		defaultPrCss.toString();
-		
-		
+	
 		
 		Render render = new Render(new BuscarParametrosCssVisitor(), prCss, defaultPrCss);
 		PageFormated page = (PageFormated) render.visit(programa, null);

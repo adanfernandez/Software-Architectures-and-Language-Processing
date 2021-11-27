@@ -1,7 +1,9 @@
 package simpleCss.visitor;
 
+import simpleCss.ast.Asignacion;
 import simpleCss.ast.Black;
 import simpleCss.ast.Blue;
+import simpleCss.ast.Campo;
 import simpleCss.ast.Center;
 import simpleCss.ast.Color;
 import simpleCss.ast.FontSize;
@@ -22,125 +24,133 @@ import simpleCss.ast.TextAlign;
 import simpleCss.ast.Width;
 
 public class PrintCss implements Visitor {
+	
+	private String sp = " ";
 
 	@Override
+	public Object visit(ProgramaCss p, Object param) {
+		String cadena = "Programa\n";
+		for(Campo c : p.getAtributos()) {
+			cadena = cadena + (String) c.accept(this,(String)param+sp)+"\n";
+		}
+		return cadena;
+	}
+	
+	@Override
 	public Object visit(Black p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
 	}
 
 	@Override
 	public Object visit(Blue p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
 	}
 
 	@Override
 	public Object visit(Center p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
 	}
 
 	@Override
 	public Object visit(Color p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return "Color " + p.getValor().accept(this, param);
 	}
 
 	@Override
 	public Object visit(FontSize p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return "FontSize " + p.getValor().accept(this, param);
+
 	}
 
 	@Override
 	public Object visit(FontStyle p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return "FontStyle" + p.getValor().accept(this, param);
+
 	}
 
 	@Override
 	public Object visit(Green p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
+
 	}
 
 	@Override
 	public Object visit(H1 p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String cadena = "H1\n";
+		for(Asignacion c : p.getAsignacion()) {
+			cadena = cadena + (String) c.accept(this,(String)param+sp)+"\n";
+		}
+		return cadena;
 	}
 
 	@Override
 	public Object visit(H2 p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String cadena = "H2\n";
+		for(Asignacion c : p.getAsignacion()) {
+			cadena = cadena + (String) c.accept(this,(String)param+sp)+"\n";
+		}
+		return cadena;
 	}
 
 	@Override
 	public Object visit(Italic p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
+
 	}
 
 	@Override
 	public Object visit(Left p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
 	}
 
 	@Override
 	public Object visit(Normal p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
+
 	}
 
 	@Override
 	public Object visit(P p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		String cadena = "P\n";
+		for(Asignacion c : p.getAsignacion()) {
+			cadena = cadena + (String) c.accept(this,(String)param+sp)+"\n";
+		}
+		return cadena;
 	}
 
-	@Override
-	public Object visit(ProgramaCss p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Object visit(Right p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
 	}
 
 	@Override
 	public Object visit(Size p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return p.toString();
 	}
 
 	@Override
 	public Object visit(TextAlign p, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+		return "TextAlign " + p.getValor().accept(this, param);
 	}
 
 	@Override
-	public Object visit(Negrita negrita, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visit(Negrita p, Object param) {
+		return p.toString();
 	}
 
 	@Override
-	public Object visit(H3 h3, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visit(H3 p, Object param) {
+		String cadena = "H3\n";
+		for(Asignacion c : p.getAsignacion()) {
+			cadena = cadena + (String) c.accept(this,(String)param+sp)+"\n";
+		}
+		return cadena;
 	}
 
 	@Override
-	public Object visit(Width width, Object param) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object visit(Width p, Object param) {
+		return "Width" + p.getValor().accept(this, param);
 	}
 
 }
