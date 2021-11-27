@@ -5,13 +5,15 @@ public class TextoFormated {
 	private String color;
 	private Double size;
 	private String style;
+	private Double width;
 	
-	public TextoFormated(String contenido, String color, Double size, String style) {
+	public TextoFormated(String contenido, String color, Double size, String style, Double width) {
 		super();
 		this.contenido = contenido;
 		this.color = color;
 		this.size = size;
 		this.style = style;
+		this.width = width;
 	}
 
 	public String getContenido() {
@@ -44,6 +46,14 @@ public class TextoFormated {
 
 	public void setStyle(String style) {
 		this.style = style;
+	}
+	
+	public Double getWidth() {
+		return width;
+	}
+
+	public void setWidth(Double width) {
+		this.width = width;
 	}
 	
 	public double calculateMetrics() {

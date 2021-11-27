@@ -85,6 +85,9 @@ public class LexiconCss {
 						case "font-style":
 							tokens.add(new TokenCss(TokensIdCss.FONT_STYLE, ident, line));
 							break;
+						case "width":
+							tokens.add(new TokenCss(TokensIdCss.WIDTH, ident, line));
+							break;
 						case "color":
 							tokens.add(new TokenCss(TokensIdCss.COLOR, ident, line));
 							break;

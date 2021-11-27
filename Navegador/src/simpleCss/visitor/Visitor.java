@@ -22,4 +22,5 @@ public interface Visitor {
 	Object visit(TextAlign p, Object param);
 	Object visit(Negrita negrita, Object param);
 	Object visit(H3 h3, Object param);
+	Object visit(Width width, Object param);
 }

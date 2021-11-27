@@ -8,6 +8,7 @@ public enum TokensIdCss {
 	FONT_SIZE,
 	TEXT_ALIGN,
 	FONT_STYLE,
+	WIDTH,
 	COLOR,
 	BLACK,
 	GREEN,

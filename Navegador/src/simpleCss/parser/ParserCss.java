@@ -44,6 +44,7 @@ public class ParserCss {
 			List<Asignacion> asignaciones = new ArrayList<Asignacion>();
 			while (token.getToken().equals(TokensIdCss.COLOR) || token.getToken().equals(TokensIdCss.TEXT_ALIGN)
 					|| token.getToken().equals(TokensIdCss.FONT_STYLE)
+					|| token.getToken().equals(TokensIdCss.WIDTH)
 					|| token.getToken().equals(TokensIdCss.FONT_SIZE)) {
 				Asignacion asignacion = null;
 				if (token.getToken().equals(TokensIdCss.COLOR)) {
@@ -73,6 +74,15 @@ public class ParserCss {
 					token = lex.getToken();
 					Size size = new Size(token.getLexeme());
 					asignaciones.add(new FontSize(size));
+				}
+				if (token.getToken().equals(TokensIdCss.WIDTH)) {
+					token = lex.getToken();
+					if (!token.getToken().equals(TokensIdCss.DOS_PUNTOS)) {
+						errorSintactico("Se esperaba : y se ha obtenido " + token.getLexeme(), token.getLine());
+					}
+					token = lex.getToken();
+					Size size = new Size(token.getLexeme());
+					asignaciones.add(new Width(size));
 				}
 				if (token.getToken().equals(TokensIdCss.TEXT_ALIGN)) {
 					token = lex.getToken();
@@ -136,3 +146,4 @@ public class ParserCss {
 		System.out.println("Error Sintáctico : " + e + " en la línea " + line);
 	}
 }
+

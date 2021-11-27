@@ -73,7 +73,7 @@ public class Main {
 					cadena = String.format(cadena, metric.toString());
 					metric = 0.0;
 				}
-				cadena += "\tFormat: " + texto.getColor() + ", " + texto.getSize() + ", " + texto.getStyle() + " | Metrics: %s" + " >> " + texto.getContenido();
+				cadena += "\tFormat: " + texto.getColor() + ", " + texto.getSize() + ", " + texto.getStyle() + ", " +  texto.getWidth() + " | Metrics: %s" + " >> " + texto.getContenido();
 			}
 			style = texto.getStyle();
 			metric += texto.calculateMetrics();

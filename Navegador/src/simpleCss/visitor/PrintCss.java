@@ -19,6 +19,7 @@ import simpleCss.ast.ProgramaCss;
 import simpleCss.ast.Right;
 import simpleCss.ast.Size;
 import simpleCss.ast.TextAlign;
+import simpleCss.ast.Width;
 
 public class PrintCss implements Visitor {
 
@@ -132,6 +133,12 @@ public class PrintCss implements Visitor {
 
 	@Override
 	public Object visit(H3 h3, Object param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object visit(Width width, Object param) {
 		// TODO Auto-generated method stub
 		return null;
 	}

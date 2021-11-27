@@ -24,6 +24,7 @@ import simpleCss.ast.ProgramaCss;
 import simpleCss.ast.Right;
 import simpleCss.ast.Size;
 import simpleCss.ast.TextAlign;
+import simpleCss.ast.Width;
 
 public class BuscarParametrosCssVisitor implements Visitor {
 
@@ -107,6 +108,11 @@ public class BuscarParametrosCssVisitor implements Visitor {
 
 	@Override
 	public Object visit(FontSize p, Object param) {
+		return p.getValor().accept(this, param);
+	}
+	
+	@Override
+	public Object visit(Width p, Object param) {
 		return p.getValor().accept(this, param);
 	}
 

@@ -152,17 +152,19 @@ public class Render implements Visitor {
 		String align = bcss.buscar(s, "text-align", defaultCss);
 		if (align == null)
 			align = bcss.buscar(s, "text-align", defaultCss);
-		LineaFormated lineaFormated = new LineaFormated(align);
 		String color = bcss.buscar(s, "color", programaCss);
 		if(color == null)
 			color = bcss.buscar(s, "color", defaultCss);
 		String size = bcss.buscar(s, "font-size", defaultCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
+		String width = bcss.buscar(s, "width", defaultCss);
+		if(width == null)
+			width = bcss.buscar(s, "width", defaultCss);
 		String style = "bold";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : negrita.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
 		}
 		return textos;
 	}
@@ -179,10 +181,13 @@ public class Render implements Visitor {
 		String size = bcss.buscar(s, "font-size", defaultCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
+		String width = bcss.buscar(s, "width", defaultCss);
+		if(width == null)
+			width = bcss.buscar(s, "width", defaultCss);
 		String style = "italic";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : cursiva.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
 		}
 		return textos;
 	}
@@ -199,10 +204,13 @@ public class Render implements Visitor {
 		String size = bcss.buscar(s, "font-size", defaultCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
+		String width = bcss.buscar(s, "width", defaultCss);
+		if(width == null)
+			width = bcss.buscar(s, "width", defaultCss);
 		String style = "underline";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : subrayado.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
 		}
 		return textos;
 	}
@@ -220,10 +228,13 @@ public class Render implements Visitor {
 		String size = bcss.buscar(s, "font-size", defaultCss);
 		if(size == null)
 				size = bcss.buscar(s, "font-size", defaultCss);
+		String width = bcss.buscar(s, "width", defaultCss);
+		if(width == null)
+			width = bcss.buscar(s, "width", defaultCss);
 		String style = "normal";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
 		for(Normal elemento : cadena.getElementos()) {
-			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style));
+			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("px", ""))));
 		}
 		return textos;
 	}
