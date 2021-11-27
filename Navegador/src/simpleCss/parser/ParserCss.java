@@ -18,7 +18,9 @@ public class ParserCss {
 		ProgramaCss programa = new ProgramaCss();
 		TokenCss token = lex.getToken();
 
-		while (token.getToken().equals(TokensIdCss.H1) || token.getToken().equals(TokensIdCss.H2)
+		while (token.getToken().equals(TokensIdCss.H1)
+				|| token.getToken().equals(TokensIdCss.H2)
+				|| token.getToken().equals(TokensIdCss.H3)
 				|| token.getToken().equals(TokensIdCss.P)) {
 
 			Campo campo = null;
@@ -26,6 +28,8 @@ public class ParserCss {
 				campo = new H1(null);
 			} else if (token.getToken().equals(TokensIdCss.H2)) {
 				campo = new H2(null);
+			} else if (token.getToken().equals(TokensIdCss.H3)) {
+				campo = new H3(null);
 			} else if (token.getToken().equals(TokensIdCss.P)) {
 				campo = new P(null);
 			}

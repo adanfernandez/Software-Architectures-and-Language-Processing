@@ -10,6 +10,12 @@ h2 {
   font-size: 18px;
   font-style: italic;
 }
+
+h3 {
+  color: blue;
+  font-size: 14px;
+  font-style: italic;
+}
  
 p {
   color: green;

@@ -12,6 +12,7 @@ import simpleHtml.ast.Elemento;
 import simpleHtml.ast.Etiqueta;
 import simpleHtml.ast.H1;
 import simpleHtml.ast.H2;
+import simpleHtml.ast.H3;
 import simpleHtml.ast.Head;
 import simpleHtml.ast.Href;
 import simpleHtml.ast.Link;
@@ -116,6 +117,18 @@ public class Render implements Visitor {
 		LineaFormated lineaFormated = new LineaFormated(align);
 		for(Elemento elemento : h2.getElementos()) {
 			lineaFormated.getTextos().addAll((List<TextoFormated>)elemento.accept(this, "h2"));
+		}
+		return lineaFormated;
+	}
+	
+	@Override
+	public Object visit(H3 h3, Object param) {
+		String align = bcss.buscar("h3", "text-align", defaultCss);
+		if (align == null)
+			align = bcss.buscar("h3", "text-align", defaultCss);
+		LineaFormated lineaFormated = new LineaFormated(align);
+		for(Elemento elemento : h3.getElementos()) {
+			lineaFormated.getTextos().addAll((List<TextoFormated>)elemento.accept(this, "h3"));
 		}
 		return lineaFormated;
 	}

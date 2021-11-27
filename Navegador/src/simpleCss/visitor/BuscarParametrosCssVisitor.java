@@ -14,6 +14,7 @@ import simpleCss.ast.FontStyle;
 import simpleCss.ast.Green;
 import simpleCss.ast.H1;
 import simpleCss.ast.H2;
+import simpleCss.ast.H3;
 import simpleCss.ast.Italic;
 import simpleCss.ast.Left;
 import simpleCss.ast.Negrita;
@@ -56,6 +57,16 @@ public class BuscarParametrosCssVisitor implements Visitor {
 
 	@Override
 	public Object visit(H2 p, Object param) {
+		for(Asignacion asignacion : p.getAsignacion()) {
+			if(asignacion.toString().equals(etiqueta)) {
+				return asignacion.accept(this, param);
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public Object visit(H3 p, Object param) {
 		for(Asignacion asignacion : p.getAsignacion()) {
 			if(asignacion.toString().equals(etiqueta)) {
 				return asignacion.accept(this, param);
@@ -148,9 +159,6 @@ public class BuscarParametrosCssVisitor implements Visitor {
 			return null;
 		return (String) astCss.accept(this, null);
 	}
-
-
-
 
 	@Override
 	public Object visit(Negrita negrita, Object param) {

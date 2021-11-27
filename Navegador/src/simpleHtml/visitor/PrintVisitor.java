@@ -7,6 +7,7 @@ import simpleHtml.ast.Elemento;
 import simpleHtml.ast.Etiqueta;
 import simpleHtml.ast.H1;
 import simpleHtml.ast.H2;
+import simpleHtml.ast.H3;
 import simpleHtml.ast.Head;
 import simpleHtml.ast.Href;
 import simpleHtml.ast.Link;
@@ -108,6 +109,14 @@ public class PrintVisitor implements Visitor {
 			s = s + (String) h.accept(this,(String)param+sp)+"\n";
 		return s;
 	}
+	
+	@Override
+	public Object visit(H3 h3, Object param) {
+		String s= (String) param + "H3\n";
+		for (Elemento h : h3.getElementos())
+			s = s + (String) h.accept(this,(String)param+sp)+"\n";
+		return s;
+	}
 
 	@Override
 	public Object visit(P p, Object param) {
@@ -154,5 +163,4 @@ public class PrintVisitor implements Visitor {
 	public Object visit(Normal normal, Object param) {
 		return String.format("\tNormal: %s\n", normal.getCadena());
 	}
-
 }

@@ -53,7 +53,7 @@ public class ParserHtml {
 		}
 		token = lex.getToken();
 		List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
-		while ((token.token == TokensIdHtml.H1I) || (token.token == TokensIdHtml.H2I) || (token.token == TokensIdHtml.PI)) {
+		while ((token.token == TokensIdHtml.H1I) || (token.token == TokensIdHtml.H2I) || (token.token == TokensIdHtml.H3I) || (token.token == TokensIdHtml.PI)) {
 			Etiqueta etiqueta = obtenerEtiqueta(token);
 			if (etiqueta != null)
 				etiquetas.add(etiqueta);
@@ -82,6 +82,12 @@ public class ParserHtml {
 				errorSintactico("Se esperaba '</h2>' y se ha obtenido " + lex.getActualToken().getLexeme(),
 						lex.getActualToken().getLine());
 			return h2;
+		case H3I:
+			H3 h3 = new H3(obtenerElemento());
+			if (!lex.getActualToken().getToken().equals(TokensIdHtml.H3C))
+				errorSintactico("Se esperaba '</h3>' y se ha obtenido " + lex.getActualToken().getLexeme(),
+						lex.getActualToken().getLine());
+			return h3;
 		case PI:
 			P p = new P(obtenerElemento());
 			if (!lex.getActualToken().getToken().equals(TokensIdHtml.PC))

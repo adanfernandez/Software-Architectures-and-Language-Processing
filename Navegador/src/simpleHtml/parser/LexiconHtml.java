@@ -45,6 +45,8 @@ public class LexiconHtml {
 								tokens.add(new TokenHtml(TokensIdHtml.H1C, lex, line));
 							else if (lex.equals("</h2>"))
 								tokens.add(new TokenHtml(TokensIdHtml.H2C, lex, line));
+							else if (lex.equals("</h3>"))
+								tokens.add(new TokenHtml(TokensIdHtml.H3C, lex, line));
 							else
 								errorLexico(lex);
 							break;
@@ -108,6 +110,8 @@ public class LexiconHtml {
 								tokens.add(new TokenHtml(TokensIdHtml.H1I, lex, line));
 							else if (lex.equals("<h2>"))
 								tokens.add(new TokenHtml(TokensIdHtml.H2I, lex, line));
+							else if (lex.equals("<h3>"))
+								tokens.add(new TokenHtml(TokensIdHtml.H3I, lex, line));
 							else
 								errorLexico(lex);
 							break;
@@ -193,7 +197,7 @@ public class LexiconHtml {
 			}
 			filereader.close();
 			for(TokenHtml token : tokens) {
-				//System.out.println(token.toString());
+				System.out.println(token.toString());
 			}
         }
 		 catch (IOException e) {

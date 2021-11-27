@@ -3,8 +3,6 @@ package render;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.control.TextFormatter;
-
 public class LineaFormated {
 
 	String align;

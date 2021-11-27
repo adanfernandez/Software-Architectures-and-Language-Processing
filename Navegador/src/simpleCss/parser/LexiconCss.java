@@ -70,6 +70,9 @@ public class LexiconCss {
 						case "h2":
 							tokens.add(new TokenCss(TokensIdCss.H2, ident, line));
 							break;
+						case "h3":
+							tokens.add(new TokenCss(TokensIdCss.H3, ident, line));
+							break;
 						case "p":
 							tokens.add(new TokenCss(TokensIdCss.P, ident, line));
 							break;

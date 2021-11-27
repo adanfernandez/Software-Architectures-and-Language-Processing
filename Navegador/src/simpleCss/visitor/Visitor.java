@@ -21,4 +21,5 @@ public interface Visitor {
 	Object visit(Size p, Object param);
 	Object visit(TextAlign p, Object param);
 	Object visit(Negrita negrita, Object param);
+	Object visit(H3 h3, Object param);
 }

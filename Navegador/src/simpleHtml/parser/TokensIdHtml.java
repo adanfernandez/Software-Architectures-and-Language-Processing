@@ -12,6 +12,7 @@ public enum TokensIdHtml {
 	BODYI, BODYC,
 	H1I, H1C,
 	H2I, H2C,
+	H3I, H3C,
 	PI, PC,
 	CIERRE,
 	NEGRITAI, NEGRITAC,

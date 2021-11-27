@@ -11,6 +11,13 @@ h2 {
   text-align: left;
   font-style: bold;
 }
+
+h3 {
+  color: black;
+  font-size: 12px;
+  text-align: left;
+  font-style: bold;
+}
  
 p {
   color: black;

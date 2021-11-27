@@ -9,6 +9,7 @@ import simpleCss.ast.FontStyle;
 import simpleCss.ast.Green;
 import simpleCss.ast.H1;
 import simpleCss.ast.H2;
+import simpleCss.ast.H3;
 import simpleCss.ast.Italic;
 import simpleCss.ast.Left;
 import simpleCss.ast.Negrita;
@@ -125,6 +126,12 @@ public class PrintCss implements Visitor {
 
 	@Override
 	public Object visit(Negrita negrita, Object param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object visit(H3 h3, Object param) {
 		// TODO Auto-generated method stub
 		return null;
 	}

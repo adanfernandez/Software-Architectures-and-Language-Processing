@@ -3,6 +3,7 @@ package simpleCss.parser;
 public enum TokensIdCss {
 	H1,
 	H2,
+	H3,
 	P,
 	FONT_SIZE,
 	TEXT_ALIGN,
