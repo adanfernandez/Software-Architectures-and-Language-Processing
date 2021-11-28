@@ -30,7 +30,7 @@ public class Main {
 		
 		
 		
-		FileReader fileReaderCss = new FileReader("src\\EX1.css");
+		FileReader fileReaderCss = new FileReader("src\\" + programa.getHead().getLink().getHref().getCadena().getCadena());
 		LexiconCss lexiconCss = new LexiconCss(fileReaderCss);
 		ParserCss parserCss = new ParserCss(lexiconCss);
 		simpleCss.ast.ProgramaCss prCss = parserCss.parse();

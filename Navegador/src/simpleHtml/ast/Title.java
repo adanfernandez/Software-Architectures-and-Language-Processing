@@ -6,17 +6,17 @@ import simpleHtml.visitor.Visitor;
 
 public class Title implements AstHtml{
 
-	public List<Normal> getTextos() {
+	public List<ContenidoTexto> getTextos() {
 		return textos;
 	}
 
-	public void setTextos(List<Normal> textos) {
+	public void setTextos(List<ContenidoTexto> textos) {
 		this.textos = textos;
 	}
 
-	List<Normal> textos;
+	List<ContenidoTexto> textos;
 	
-	public Title(List<Normal> textos) {
+	public Title(List<ContenidoTexto> textos) {
 		this.textos = textos;
 	}
 	

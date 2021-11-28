@@ -12,7 +12,7 @@ import simpleHtml.ast.Head;
 import simpleHtml.ast.Href;
 import simpleHtml.ast.Link;
 import simpleHtml.ast.Negrita;
-import simpleHtml.ast.Normal;
+import simpleHtml.ast.ContenidoTexto;
 import simpleHtml.ast.P;
 import simpleHtml.ast.Programa;
 import simpleHtml.ast.Rel;
@@ -88,7 +88,7 @@ public class PrintVisitor implements Visitor {
 	@Override
 	public Object visit(Title title, Object param) {
 		String s = (String)param+"Title\n";
-		for(Normal texto : title.getTextos()) {
+		for(ContenidoTexto texto : title.getTextos()) {
 			s += texto.accept(this, (String)param+sp);
 		}
 		return s;
@@ -130,7 +130,7 @@ public class PrintVisitor implements Visitor {
 	@Override
 	public Object visit(Texto texto, Object param) {
 		String s= (String) param + "Texto\n";
-		for (Normal h : texto.getElementos())
+		for (ContenidoTexto h : texto.getElementos())
 			s = s + (String) h.accept(this,(String)param+sp)+"\n";
 		return s;
 	}
@@ -138,7 +138,7 @@ public class PrintVisitor implements Visitor {
 	@Override
 	public Object visit(Negrita negrita, Object param) {
 		String s= (String) param + "Negrita\n";
-		for (Normal h : negrita.getElementos())
+		for (ContenidoTexto h : negrita.getElementos())
 			s = s + (String) h.accept(this,(String)param+sp)+"\n";
 		return s;
 	}
@@ -146,7 +146,7 @@ public class PrintVisitor implements Visitor {
 	@Override
 	public Object visit(Cursiva cursiva, Object param) {
 		String s= (String) param + "Cursiva\n";
-		for (Normal h : cursiva.getElementos())
+		for (ContenidoTexto h : cursiva.getElementos())
 			s = s + (String) h.accept(this,(String)param+sp)+"\n";
 		return s;
 	}
@@ -154,13 +154,13 @@ public class PrintVisitor implements Visitor {
 	@Override
 	public Object visit(Subrayado subrayado, Object param) {
 		String s= (String) param + "Subrayado\n";
-		for (Normal h : subrayado.getElementos())
+		for (ContenidoTexto h : subrayado.getElementos())
 			s = s + (String) h.accept(this,(String)param+sp)+"\n";
 		return s;
 	}
 
 	@Override
-	public Object visit(Normal normal, Object param) {
+	public Object visit(ContenidoTexto normal, Object param) {
 		return String.format("\tNormal: %s\n", normal.getCadena());
 	}
 }

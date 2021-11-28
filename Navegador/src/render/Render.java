@@ -17,7 +17,7 @@ import simpleHtml.ast.Head;
 import simpleHtml.ast.Href;
 import simpleHtml.ast.Link;
 import simpleHtml.ast.Negrita;
-import simpleHtml.ast.Normal;
+import simpleHtml.ast.ContenidoTexto;
 import simpleHtml.ast.P;
 import simpleHtml.ast.Programa;
 import simpleHtml.ast.Rel;
@@ -89,9 +89,9 @@ public class Render implements Visitor {
 
 	@Override
 	public Object visit(Title title, Object param) {
-		List<Normal> textos = title.getTextos();
+		List<ContenidoTexto> textos = title.getTextos();
 		String cadena = "";
-		for (Normal texto : textos) {
+		for (ContenidoTexto texto : textos) {
 			cadena += " " + texto.accept(this, param);
 		}
 		return cadena;
@@ -166,7 +166,7 @@ public class Render implements Visitor {
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "bold";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
-		for(Normal elemento : negrita.getElementos()) {
+		for(ContenidoTexto elemento : negrita.getElementos()) {
 			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
@@ -189,7 +189,7 @@ public class Render implements Visitor {
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "italic";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
-		for(Normal elemento : cursiva.getElementos()) {
+		for(ContenidoTexto elemento : cursiva.getElementos()) {
 			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
@@ -212,7 +212,7 @@ public class Render implements Visitor {
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "underline";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
-		for(Normal elemento : subrayado.getElementos()) {
+		for(ContenidoTexto elemento : subrayado.getElementos()) {
 			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
@@ -236,7 +236,7 @@ public class Render implements Visitor {
 			width = bcss.buscar(s, "width", defaultCss);
 		String style = "normal";
 		List<TextoFormated> textos = new ArrayList<TextoFormated>();
-		for(Normal elemento : cadena.getElementos()) {
+		for(ContenidoTexto elemento : cadena.getElementos()) {
 			textos.add(new TextoFormated((String) elemento.accept(this, null), color, Double.parseDouble(size.replace("px", "")), style, Double.parseDouble(width.replace("%", ""))));
 		}
 		return textos;
@@ -267,7 +267,7 @@ public class Render implements Visitor {
 	}
 
 	@Override
-	public Object visit(Normal normal, Object param) {
+	public Object visit(ContenidoTexto normal, Object param) {
 		return normal.getCadena();
 	}
 

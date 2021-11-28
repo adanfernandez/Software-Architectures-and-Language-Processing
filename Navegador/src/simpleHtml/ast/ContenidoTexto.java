@@ -2,7 +2,7 @@ package simpleHtml.ast;
 
 import simpleHtml.visitor.Visitor;
 
-public class Normal implements AstHtml {
+public class ContenidoTexto implements AstHtml {
 	public String getCadena() {
 		return cadena;
 	}
@@ -13,7 +13,7 @@ public class Normal implements AstHtml {
 
 	String cadena;
 	
-	public Normal (String cadena) {
+	public ContenidoTexto (String cadena) {
 		this.cadena = cadena;
 	}
 

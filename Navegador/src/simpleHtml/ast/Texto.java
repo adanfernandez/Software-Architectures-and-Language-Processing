@@ -6,17 +6,17 @@ import simpleHtml.visitor.Visitor;
 
 public class Texto implements Elemento {
 
-	public List<Normal> getElementos() {
+	public List<ContenidoTexto> getElementos() {
 		return elementos;
 	}
 
-	public void setElementos(List<Normal> elementos) {
+	public void setElementos(List<ContenidoTexto> elementos) {
 		this.elementos = elementos;
 	}
 
-	List<Normal> elementos;
+	List<ContenidoTexto> elementos;
 
-	public Texto (List<Normal> elementos) {
+	public Texto (List<ContenidoTexto> elementos) {
 		this.elementos = elementos;
 	}
 

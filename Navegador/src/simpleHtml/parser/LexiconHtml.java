@@ -189,7 +189,7 @@ public class LexiconHtml {
 							tokens.add(new TokenHtml(TokensIdHtml.TYPEI, lex, line));
 							break;
 						default:
-							tokens.add(new TokenHtml(TokensIdHtml.NORMAL, lex, line));
+							tokens.add(new TokenHtml(TokensIdHtml.TEXTO, lex, line));
 							break;
 					}
 				}

@@ -105,18 +105,18 @@ public class ParserHtml {
 		TokenHtml tok = lex.getToken();
 		
 		List<Elemento> atributos = new ArrayList<Elemento>();
-		while((tok.token == TokensIdHtml.NORMAL) || (tok.token == TokensIdHtml.CURSIVAI) || (tok.token == TokensIdHtml.NEGRITAI) 
+		while((tok.token == TokensIdHtml.TEXTO) || (tok.token == TokensIdHtml.CURSIVAI) || (tok.token == TokensIdHtml.NEGRITAI) 
 				|| (tok.token == TokensIdHtml.UNDERLINEI)) {
 			Elemento atributo = obtenerAtributoBody(tok);
 			
-			if(tok.token == TokensIdHtml.NORMAL) {
+			if(tok.token == TokensIdHtml.TEXTO) {
 				atributo = new Texto(obtenerTextos());
 			}
 			
 			if(atributo != null)
 				atributos.add(atributo);
 			
-			if(tok.token == TokensIdHtml.NORMAL) {
+			if(tok.token == TokensIdHtml.TEXTO) {
 				tok = lex.getActualToken();
 			} else {
 				tok = lex.getToken();
@@ -128,7 +128,7 @@ public class ParserHtml {
 	
 	private Elemento obtenerAtributoBody(TokenHtml tok) {
 		switch (tok.getToken()) {
-			case NORMAL:
+			case TEXTO:
 				return null;
 			case CURSIVAI:
 				Cursiva cursiva = new Cursiva(obtenerTextos());
@@ -153,14 +153,14 @@ public class ParserHtml {
 		}
 	}
 	
-	private List<Normal> obtenerTextos() {
-		List<Normal> textos = new ArrayList<Normal>();
+	private List<ContenidoTexto> obtenerTextos() {
+		List<ContenidoTexto> textos = new ArrayList<ContenidoTexto>();
 		TokenHtml tok = lex.getActualToken();
-		if(!tok.getToken().equals(TokensIdHtml.NORMAL)) {
+		if(!tok.getToken().equals(TokensIdHtml.TEXTO)) {
 			tok = lex.getToken();
 		}
-		while(tok.getToken().equals(TokensIdHtml.NORMAL)) {
-			Normal texto = new Normal(tok.lexeme);
+		while(tok.getToken().equals(TokensIdHtml.TEXTO)) {
+			ContenidoTexto texto = new ContenidoTexto(tok.lexeme);
 			textos.add(texto);
 			tok = lex.getToken();
 		}
@@ -173,9 +173,9 @@ public class ParserHtml {
 			errorSintactico("Se esperaba <title> y se ha obtenido " + token.getLexeme(), token.getLine());
 		}
 		token = lex.getToken();
-		List<Normal> textos = new ArrayList<Normal>();
-		while (token.getToken().equals(TokensIdHtml.NORMAL)) {
-			Normal normal = new Normal(token.getLexeme());
+		List<ContenidoTexto> textos = new ArrayList<ContenidoTexto>();
+		while (token.getToken().equals(TokensIdHtml.TEXTO)) {
+			ContenidoTexto normal = new ContenidoTexto(token.getLexeme());
 			textos.add(normal);
 			token = lex.getToken();
 		}
